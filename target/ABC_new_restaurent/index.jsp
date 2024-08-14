@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,21 +38,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="customer?action=register">Customer Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="staff?action=register">Staff Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="viewServices.jsp">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="viewGallery.jsp">Gallery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="submitQuery.jsp">Contact Us</a>
-                    </li>
+                    <c:choose>
+                        <c:when test="${sessionScope.customer != null}">
+                            <li class="nav-item">
+                                <span class="navbar-text">Welcome, ${sessionScope.customer.name}!</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="viewServices.jsp">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="viewGallery.jsp">Gallery</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="customer?action=logout">Logout</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="nav-item">
+                                <a class="nav-link" href="customer?action=login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="submitQuery.jsp">Contact Us</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
                 </ul>
             </div>
         </div>
@@ -64,10 +74,14 @@
             <p class="lead">Experience the finest dining with our exquisite services. Whether you are here to dine in or to place an order for delivery, we have something special for everyone.</p>
             <hr class="my-4">
             <p>Sign in to start managing your orders, reservations, and more.</p>
-            <a class="btn btn-primary btn-lg" href="customer?action=login" role="button">Customer Login</a>
-            <a class="btn btn-success btn-lg" href="customer?action=register" role="button">Customer Register</a>
-            <a class="btn btn-secondary btn-lg" href="staff?action=login" role="button">Staff Login</a>
-            <a class="btn btn-warning btn-lg" href="staff?action=register" role="button">Staff Register</a>
+            <c:choose>
+                <c:when test="${sessionScope.customer != null}">
+                    <a class="btn btn-primary btn-lg" href="viewServices.jsp" role="button">Make a Reservation</a>
+                </c:when>
+                <c:otherwise>
+                    <button class="btn btn-primary btn-lg" onclick="showLoginAlert()">Login to Make a Reservation</button>
+                </c:otherwise>
+            </c:choose>
         </div>
 
         <!-- Features Section -->
@@ -77,7 +91,14 @@
                     <div class="card-body">
                         <h5 class="card-title">Explore Our Services</h5>
                         <p class="card-text">Discover our range of services, from dining to delivery, and make a reservation online.</p>
-                        <a href="viewServices.jsp" class="btn btn-primary">View Services</a>
+                        <c:choose>
+                            <c:when test="${sessionScope.customer != null}">
+                                <a href="viewServices.jsp" class="btn btn-secondary">View Services</a>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="btn btn-primary" onclick="showLoginAlert()">Login to View Services</button>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
@@ -86,7 +107,14 @@
                     <div class="card-body">
                         <h5 class="card-title">Check Our Gallery</h5>
                         <p class="card-text">Take a virtual tour of our restaurant and explore the ambiance before your visit.</p>
-                        <a href="viewGallery.jsp" class="btn btn-info">View Gallery</a>
+                        <c:choose>
+                            <c:when test="${sessionScope.customer != null}">
+                                <a href="viewGallery.jsp" class="btn btn-info">View Gallery</a>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="btn btn-info" onclick="showLoginAlert()">Login to View Gallery</button>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
@@ -109,5 +137,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    
+    <script>
+        function showLoginAlert() {
+            alert("Please log in to access this feature.");
+        }
+    </script>
 </body>
 </html>

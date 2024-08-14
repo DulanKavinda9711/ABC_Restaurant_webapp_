@@ -22,15 +22,24 @@ public class CustomerController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
-            action = "login"; // Default action
+            action = "login";
         }
 
         switch (action) {
+            case "list":
+                listCustomers(request, response);
+                break;
+            case "delete":
+                deleteCustomer(request, response);
+                break;
             case "register":
                 showRegisterForm(request, response);
                 break;
             case "login":
                 showLoginForm(request, response);
+                break;
+            case "logout":
+                logoutCustomer(request, response);
                 break;
             default:
                 showLoginForm(request, response);
@@ -40,11 +49,36 @@ public class CustomerController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if ("login".equals(action)) {
-            loginCustomer(request, response);
-        } else if ("register".equals(action)) {
-            registerCustomer(request, response);
+        if (action == null) {
+            action = "login";
         }
+
+        switch (action) {
+            case "register":
+                registerCustomer(request, response);
+                break;
+            case "login":
+                loginCustomer(request, response);
+                break;
+            default:
+                loginCustomer(request, response);
+                break;
+        }
+    }
+
+    private void listCustomers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            request.setAttribute("customers", customerService.getAllCustomers());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher("WEB-INF/view/listCustomers.jsp").forward(request, response);
+    }
+
+    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int customerId = Integer.parseInt(request.getParameter("id"));
+        customerService.deleteCustomer(customerId);
+        response.sendRedirect("customer?action=list");
     }
 
     private void showRegisterForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -77,11 +111,16 @@ public class CustomerController extends HttpServlet {
 
         Customer customer = customerService.loginCustomer(email, password);
         if (customer != null) {
-            request.getSession().setAttribute("customer", customer); // Store customer in session
-            response.sendRedirect("main.jsp"); // Redirect to main.jsp after successful login
+            request.getSession().setAttribute("customer", customer);
+            response.sendRedirect("main.jsp"); // Redirect to the index page after successful login
         } else {
             request.setAttribute("error", "Invalid email or password");
             request.getRequestDispatcher("WEB-INF/view/loginCustomer.jsp").forward(request, response);
         }
+    }
+
+    private void logoutCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().invalidate(); // Invalidate the session
+        response.sendRedirect("customer?action=login"); // Redirect to the login page
     }
 }
