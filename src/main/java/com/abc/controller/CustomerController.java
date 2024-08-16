@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/customer")
 public class CustomerController extends HttpServlet {
@@ -19,6 +18,7 @@ public class CustomerController extends HttpServlet {
         customerService = new CustomerService();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -47,6 +47,7 @@ public class CustomerController extends HttpServlet {
         }
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -69,7 +70,7 @@ public class CustomerController extends HttpServlet {
     private void listCustomers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("customers", customerService.getAllCustomers());
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         request.getRequestDispatcher("WEB-INF/view/listCustomers.jsp").forward(request, response);
@@ -112,7 +113,7 @@ public class CustomerController extends HttpServlet {
         Customer customer = customerService.loginCustomer(email, password);
         if (customer != null) {
             request.getSession().setAttribute("customer", customer);
-            response.sendRedirect("main.jsp"); // Redirect to the index page after successful login
+            response.sendRedirect("index.jsp"); // Redirect to the index page after successful login
         } else {
             request.setAttribute("error", "Invalid email or password");
             request.getRequestDispatcher("WEB-INF/view/loginCustomer.jsp").forward(request, response);
@@ -121,6 +122,6 @@ public class CustomerController extends HttpServlet {
 
     private void logoutCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().invalidate(); // Invalidate the session
-        response.sendRedirect("customer?action=login"); // Redirect to the login page
+        response.sendRedirect("index.jsp"); // Redirect to the index page after logout
     }
 }

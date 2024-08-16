@@ -75,6 +75,7 @@ public class ProductController extends HttpServlet {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         double price = Double.parseDouble(request.getParameter("price"));
+        String category = request.getParameter("category"); // New category parameter
 
         Part filePart = request.getPart("image");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -90,6 +91,7 @@ public class ProductController extends HttpServlet {
         product.setDescription(description);
         product.setPrice(price);
         product.setImagePath(imagePath);
+        product.setCategory(category); // Set category
 
         productService.addProduct(product);
         response.sendRedirect("product?action=list");
@@ -100,6 +102,7 @@ public class ProductController extends HttpServlet {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         double price = Double.parseDouble(request.getParameter("price"));
+        String category = request.getParameter("category"); // New category parameter
 
         Part filePart = request.getPart("image");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -110,7 +113,7 @@ public class ProductController extends HttpServlet {
 
         String imagePath = "uploads" + File.separator + fileName;
 
-        Product product = new Product(productId, name, description, price, imagePath);
+        Product product = new Product(productId, name, description, price, imagePath, category); // Include category
 
         productService.updateProduct(product);
         response.sendRedirect("product?action=list");

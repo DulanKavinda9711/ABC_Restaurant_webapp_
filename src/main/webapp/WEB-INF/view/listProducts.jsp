@@ -69,6 +69,7 @@
                     <th>Price</th>
                     <th>Description</th>
                     <th>Image</th>
+                    <th>Category</th> <!-- New Category column -->
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -80,6 +81,7 @@
                         <td class="text-right">${product.price}</td>
                         <td>${product.description}</td>
                         <td><img src="${product.imagePath}" class="product-image" alt="Product Image"></td>
+                        <td>${product.category}</td> <!-- Display category -->
                         <td>
                             <a href="product?action=edit&id=${product.productId}" class="btn btn-warning btn-sm">Edit</a>
                             <a href="product?action=delete&id=${product.productId}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>

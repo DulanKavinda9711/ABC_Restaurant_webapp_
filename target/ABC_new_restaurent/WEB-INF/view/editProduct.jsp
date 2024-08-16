@@ -35,6 +35,16 @@
                 <input type="number" class="form-control" step="0.01" id="price" name="price" value="${product.price}" required>
             </div>
             <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category" name="category" required>
+                    <option value="Breakfast" ${product.category == 'Breakfast' ? 'selected' : ''}>Breakfast</option>
+                    <option value="Lunch" ${product.category == 'Lunch' ? 'selected' : ''}>Lunch</option>
+                    <option value="Dinner" ${product.category == 'Dinner' ? 'selected' : ''}>Dinner</option>
+                    <option value="Dessert" ${product.category == 'Dessert' ? 'selected' : ''}>Dessert</option>
+                    <option value="Beverage" ${product.category == 'Beverage' ? 'selected' : ''}>Beverage</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="image">Image:</label>
                 <input type="file" class="form-control" id="image" name="image">
                 <img src="${product.imagePath}" class="product-image" alt="Current Product Image" style="width: 100px; margin-top: 10px;">

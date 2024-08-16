@@ -12,7 +12,7 @@ import com.abc.model.Product;
 public class ProductDAO {
 
     public void addProduct(Product product) {
-        String query = "INSERT INTO Product (name, price, description, image_path) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO Product (name, price, description, image_path, category) VALUES (?, ?, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -23,6 +23,7 @@ public class ProductDAO {
             statement.setDouble(2, product.getPrice());
             statement.setString(3, product.getDescription());
             statement.setString(4, product.getImagePath());
+            statement.setString(5, product.getCategory()); // Set the category
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,9 +36,9 @@ public class ProductDAO {
             }
         }
     }
-    
+
     public void updateProduct(Product product) {
-        String query = "UPDATE Product SET name = ?, price = ?, description = ?, image_path = ? WHERE product_id = ?";
+        String query = "UPDATE Product SET name = ?, price = ?, description = ?, image_path = ?, category = ? WHERE product_id = ?";
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -48,7 +49,8 @@ public class ProductDAO {
             statement.setDouble(2, product.getPrice());
             statement.setString(3, product.getDescription());
             statement.setString(4, product.getImagePath());
-            statement.setInt(5, product.getProductId());
+            statement.setString(5, product.getCategory()); // Update the category
+            statement.setInt(6, product.getProductId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,7 +99,8 @@ public class ProductDAO {
             double price = resultSet.getDouble("price");
             String desc = resultSet.getString("description");
             String imagePath = resultSet.getString("image_path");
-            products.add(new Product(id, name, desc, price, imagePath));
+            String category = resultSet.getString("category"); // Retrieve the category
+            products.add(new Product(id, name, desc, price, imagePath, category));
         }
 
         resultSet.close();

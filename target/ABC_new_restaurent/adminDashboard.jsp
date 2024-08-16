@@ -7,8 +7,6 @@
     <title>Admin Dashboard - ABC Restaurant</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             padding-top: 56px;
@@ -35,7 +33,7 @@
                     <span class="navbar-text">Welcome, Admin!</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="admin?action=logout">Logout</a>
+                    <a class="nav-link" href="adminLogin.jsp">Logout</a>
                 </li>
             </ul>
         </div>
@@ -49,7 +47,7 @@
                     <div class="card-body">
                         <h5 class="card-title">List Products</h5>
                         <p class="card-text">View, add, edit, or delete products.</p>
-                        <a href="WEB-INF/view/listProducts.jsp" class="btn btn-primary">Go to Products</a>
+                        <a href="admin?action=listProducts" class="btn btn-primary">Go to Products</a>
                     </div>
                 </div>
             </div>
@@ -58,7 +56,7 @@
                     <div class="card-body">
                         <h5 class="card-title">List Customers</h5>
                         <p class="card-text">View, add, edit, or delete customers.</p>
-                        <a href="listCustomers.jsp" class="btn btn-info">Go to Customers</a>
+                        <a href="admin?action=listCustomers" class="btn btn-info">Go to Customers</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +65,7 @@
                     <div class="card-body">
                         <h5 class="card-title">List Staff</h5>
                         <p class="card-text">View, add, edit, or delete staff members.</p>
-                        <a href="listStaff.jsp" class="btn btn-secondary">Go to Staff</a>
+                        <a href="admin?action=listStaff" class="btn btn-secondary">Go to Staff</a>
                     </div>
                 </div>
             </div>
@@ -75,8 +73,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     
 </body>
 </html>

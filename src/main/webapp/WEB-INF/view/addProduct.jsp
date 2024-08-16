@@ -34,6 +34,17 @@
                 <input type="number" class="form-control" step="0.01" id="price" name="price" required>
             </div>
             <div class="form-group">
+                <label for="category">Category:</label> <!-- Updated category field with dropdown -->
+                <select class="form-control" id="category" name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Beverages">Beverages</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="image">Image:</label>
                 <input type="file" class="form-control" id="image" name="image" required>
             </div>
