@@ -4,10 +4,10 @@ com\abc\dao\DBConnectionFactory.class
 com\abc\model\Admin.class
 com\abc\service\AdminService.class
 com\abc\service\StaffService.class
-com\abc\service\CustomerService.class
 com\abc\dao\AdminDAO.class
 com\abc\controller\StaffController.class
-com\abc\dao\DBConnection.class
-com\abc\model\Customer.class
 com\abc\dao\CustomerDAO.class
 com\abc\model\Staff.class
+com\abc\service\CustomerService.class
+com\abc\dao\DBConnection.class
+com\abc\model\Customer.class

@@ -24,12 +24,6 @@
         .btn-primary, .btn-warning, .btn-danger {
             margin-right: 5px;
         }
-        .category-title {
-            text-transform: uppercase;
-            font-weight: bold;
-            background-color: #f8f9fa;
-            padding: 10px;
-        }
     </style>
     <script>
         function searchProducts() {
@@ -67,46 +61,35 @@
             </div>
         </div>
 
-        <!-- Single Table for All Products -->
         <table id="productTable" class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Category</th>
                     <th>Price</th>
                     <th>Description</th>
                     <th>Image</th>
+                    <th>Category</th> <!-- New Category column -->
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="category" items="${categories}">
-                    <!-- Category Row -->
+                <c:forEach var="product" items="${products}">
                     <tr>
-                        <td colspan="7" class="category-title">${category}</td>
+                        <td>${product.productId}</td>
+                        <td>${product.name}</td>
+                        <td class="text-right">${product.price}</td>
+                        <td>${product.description}</td>
+                        <td><img src="${product.imagePath}" class="product-image" alt="Product Image"></td>
+                        <td>${product.category}</td> <!-- Display category -->
+                        <td>
+                            <a href="product?action=edit&id=${product.productId}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="product?action=delete&id=${product.productId}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                        </td>
                     </tr>
-                    <!-- Product Rows -->
-                    <c:forEach var="product" items="${products}">
-                        <c:if test="${product.category == category}">
-                            <tr>
-                                <td>${product.productId}</td>
-                                <td>${product.name}</td>
-                                <td>${product.category}</td>
-                                <td class="text-right">${product.price}</td>
-                                <td>${product.description}</td>
-                                <td><img src="${product.imagePath}" class="product-image" alt="Product Image"></td>
-                                <td>
-                                    <a href="product?action=edit&id=${product.productId}" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="product?action=delete&id=${product.productId}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
-                                </td>
-                            </tr>
-                        </c:if>
-                    </c:forEach>
                 </c:forEach>
             </tbody>
         </table>
-
         <div class="text-center">
             <a href="product?action=add" class="btn btn-primary btn-lg">Add New Product</a>
         </div>

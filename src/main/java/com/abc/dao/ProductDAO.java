@@ -1,10 +1,6 @@
 package com.abc.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import com.abc.model.Product;
@@ -20,10 +16,10 @@ public class ProductDAO {
             connection = DBConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
-            statement.setDouble(2, product.getPrice());
+            statement.setString(2, product.getPrice()); // Change to setString
             statement.setString(3, product.getDescription());
             statement.setString(4, product.getImagePath());
-            statement.setString(5, product.getCategory()); // Set the category
+            statement.setString(5, product.getCategory());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,10 +42,10 @@ public class ProductDAO {
             connection = DBConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
-            statement.setDouble(2, product.getPrice());
+            statement.setString(2, product.getPrice()); // Change to setString
             statement.setString(3, product.getDescription());
             statement.setString(4, product.getImagePath());
-            statement.setString(5, product.getCategory()); // Update the category
+            statement.setString(5, product.getCategory());
             statement.setInt(6, product.getProductId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -63,7 +59,7 @@ public class ProductDAO {
             }
         }
     }
-
+    
     public void deleteProduct(int productId) {
         String query = "DELETE FROM Product WHERE product_id = ?";
         Connection connection = null;
@@ -73,15 +69,20 @@ public class ProductDAO {
             connection = DBConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);
             statement.setInt(1, productId);
-            statement.executeUpdate();
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected == 0) {
+                // If no rows were affected, it means the product ID does not exist
+                System.out.println("No product found with ID: " + productId);
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Log the exception
         } finally {
             try {
                 if (statement != null) statement.close();
                 if (connection != null) connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                e.printStackTrace(); // Log the exception
             }
         }
     }
@@ -96,10 +97,10 @@ public class ProductDAO {
         while (resultSet.next()) {
             int id = resultSet.getInt("product_id");
             String name = resultSet.getString("name");
-            double price = resultSet.getDouble("price");
+            String price = resultSet.getString("price"); // Change to getString
             String desc = resultSet.getString("description");
             String imagePath = resultSet.getString("image_path");
-            String category = resultSet.getString("category"); // Retrieve the category
+            String category = resultSet.getString("category");
             products.add(new Product(id, name, desc, price, imagePath, category));
         }
 

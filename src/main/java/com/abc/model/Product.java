@@ -5,13 +5,13 @@ public class Product {
     private int productId;
     private String name;
     private String description;
-    private double price;
+    private String price; // Change from double to String
     private String imagePath;
-    private String category; // New field for category
+    private String category;
 
     public Product() {}
 
-    public Product(int productId, String name, String description, double price, String imagePath, String category) {
+    public Product(int productId, String name, String description, String price, String imagePath, String category) {
         this.productId = productId;
         this.name = name;
         this.description = description;
@@ -20,7 +20,7 @@ public class Product {
         this.category = category;
     }
 
-    // Getters and Setters for all fields including the new category field
+    // Getters and Setters for all fields including price as String
     public int getProductId() {
         return productId;
     }
@@ -45,11 +45,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

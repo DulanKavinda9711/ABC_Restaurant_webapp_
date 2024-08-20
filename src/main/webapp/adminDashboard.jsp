@@ -69,6 +69,24 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">List Reservations</h5>
+                        <p class="card-text">View, accept, reject, or delete reservations.</p>
+                        <a href="admin?action=listReservations" class="btn btn-secondary">Go to Reservations</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">List Queries</h5>
+                        <p class="card-text">View, accept, reject Query.</p>
+                        <a href="admin?action=listQueries" class="btn btn-secondary">Go to Quries</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

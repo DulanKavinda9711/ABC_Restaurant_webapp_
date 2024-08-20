@@ -28,6 +28,26 @@
   	<description></description>
   	<servlet-class>com.abc.controller.AdminController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>IndexController</servlet-name>
+  	<display-name>IndexController</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.controller.IndexController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ReservationController</servlet-name>
+  	<display-name>ReservationController</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.controller.ReservationController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>QueryController</servlet-name>
+  	<display-name>QueryController</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.controller.QueryController</servlet-class>
+  </servlet>
+  
+
  
   <servlet-mapping>
   	<servlet-name>ProductController</servlet-name>
@@ -45,6 +65,20 @@
   	<servlet-name>AdminController</servlet-name>
   	<url-pattern>/AdminController</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>IndexController</servlet-name>
+  	<url-pattern>/IndexController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReservationController</servlet-name>
+  	<url-pattern>/ReservationController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>QueryController</servlet-name>
+  	<url-pattern>/QueryController</url-pattern>
+  </servlet-mapping>
+  
+  
   
   
 </web-app>

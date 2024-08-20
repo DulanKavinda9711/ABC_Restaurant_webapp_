@@ -26,7 +26,12 @@ public class ProductService {
     }
 
     public void addProduct(Product product) {
-        productDAO.addProduct(product);
+        // Ensure price is stored as a string
+        if (product.getPrice() != null && !product.getPrice().isEmpty()) {
+            productDAO.addProduct(product);
+        } else {
+            throw new IllegalArgumentException("Price cannot be null or empty");
+        }
     }
 
     public List<Product> getAllProducts() throws SQLException {
@@ -34,7 +39,12 @@ public class ProductService {
     }
     
     public void updateProduct(Product product) {
-        productDAO.updateProduct(product);
+        // Ensure price is stored as a string
+        if (product.getPrice() != null && !product.getPrice().isEmpty()) {
+            productDAO.updateProduct(product);
+        } else {
+            throw new IllegalArgumentException("Price cannot be null or empty");
+        }
     }
 
     public void deleteProduct(int productId) {
