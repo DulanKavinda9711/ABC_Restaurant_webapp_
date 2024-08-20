@@ -11,9 +11,8 @@
  
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -74,7 +73,7 @@
                        </c:when>
                        <c:otherwise>
                        <li class="nav-item">
-                               <a class="nav-link" href="index.jsp">Home</a>
+                               <a class="nav-link" href="index">Home</a>
                            </li>
                             <li class="nav-item">
                                <a class="nav-link" href="#menu">Menu</a>
@@ -644,7 +643,7 @@
 </footer>
   <!-- End Footer -->
 
-  <div id="preloader"></div>
+  
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
