@@ -113,7 +113,7 @@ public class CustomerController extends HttpServlet {
         Customer customer = customerService.loginCustomer(email, password);
         if (customer != null) {
             request.getSession().setAttribute("customer", customer);
-            response.sendRedirect("index.jsp"); // Redirect to the index page after successful login
+            response.sendRedirect("index"); // Redirect to the index page after successful login
         } else {
             request.setAttribute("error", "Invalid email or password");
             request.getRequestDispatcher("WEB-INF/view/loginCustomer.jsp").forward(request, response);
@@ -122,6 +122,6 @@ public class CustomerController extends HttpServlet {
 
     private void logoutCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().invalidate(); // Invalidate the session
-        response.sendRedirect("index.jsp"); // Redirect to the index page after logout
+        response.sendRedirect("index"); // Redirect to the index page after logout
     }
 }

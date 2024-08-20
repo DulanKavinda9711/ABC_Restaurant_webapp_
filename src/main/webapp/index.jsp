@@ -33,74 +33,87 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-<c:choose>
-               <c:when test="${sessionScope.customer != null}">
-      <h1 class="logo me-auto me-lg-0"><a href="">Welcome, ${sessionScope.customer.name}!</a></h1>
-      </c:when>
-               <c:otherwise>
-      <h1 class="logo me-auto me-lg-0"><a href="">ABC Restaurant</a></h1>
-         </c:otherwise>
-           </c:choose>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    <c:choose>
+        <c:when test="${sessionScope.customer != null}">
+            <h1 class="logo me-auto me-lg-0"><a href="index">Welcome, ${sessionScope.customer.name}!</a></h1>
+        </c:when>
+        <c:otherwise>
+            <h1 class="logo me-auto me-lg-0"><a href="index">ABC Restaurant</a></h1>
+        </c:otherwise>
+    </c:choose>
 
-      <nav id="navbar" class="navbar order-last order-lg-0">
+    <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-        
-          <c:choose>
-                       <c:when test="${sessionScope.customer != null}">
-                       <li class="nav-item">
-                               <a class="nav-link" href="index">Home</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#menu">Menu</a>
-                           </li>
-                            <li class="nav-item">
-                               <a class="nav-link" href="#specials">Offers</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#events">Services</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#gallery">Gallery</a>
-                           </li>
-                            <li class="nav-item">
-                               <a class="nav-link" href="#contact">Contact Us</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="customer?action=logout">Logout</a>
-                           </li>
-                       </c:when>
-                       <c:otherwise>
-                       <li class="nav-item">
-                               <a class="nav-link" href="index">Home</a>
-                           </li>
-                            <li class="nav-item">
-                               <a class="nav-link" href="#menu">Menu</a>
-                           </li>
-                            <li class="nav-item">
-                               <a class="nav-link" href="#specials">Offers</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#events">Services</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#gallery">Gallery</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#contact">Contact Us</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="customer?action=login">Login</a>
-                           </li>
-                       </c:otherwise>
-                   </c:choose>
+            <c:choose>
+                <c:when test="${sessionScope.customer != null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#specials">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#events">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="customer?action=logout">Logout</a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#specials">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#events">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="customer?action=login">Login</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+
+            <!-- Cart Icon with Number of Items -->
+            <li class="nav-item">
+                <a class="nav-link" href="cart.jsp">
+                    <i class="bi bi-cart"></i> <!-- Bootstrap cart icon -->
+                    <c:if test="${sessionScope.cart != null}">
+                        <span class="badge bg-warning text-dark">
+                            ${sessionScope.cart.items.size()}
+                        </span>
+                    </c:if>
+                    <c:if test="${sessionScope.cart == null}">
+                        <span class="badge bg-warning text-dark">0</span>
+                    </c:if>
+                </a>
+            </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
+    </nav><!-- .navbar -->
 
-    </div>
+    <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
+</div>
+
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
@@ -226,10 +239,29 @@
       <div class="menu-ingredients">
         ${product.description}
       </div>
-      <button class="add-to-cart-btn">Add to Cart</button> <!-- New Add to Cart button -->
+
+      <!-- Check if customer is logged in -->
+      <c:choose>
+        <c:when test="${sessionScope.customer != null}">
+          <!-- Add to Cart Form -->
+          <form action="cart" method="post">
+            <input type="hidden" name="productId" value="${product.productId}">
+            <input type="hidden" name="quantity" value="1"> <!-- Default quantity to 1 -->
+            <input type="hidden" name="action" value="add">
+            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+          </form>
+        </c:when>
+        <c:otherwise>
+          <!-- If not logged in, show message and link to login -->
+          <a href="customer?action=login" class="btn btn-warning">Login to add to cart</a>
+        </c:otherwise>
+      </c:choose>
     </div>
   </c:forEach>
 </div>
+
+
+
 </div>
     </section><!-- End Menu Section -->
 
@@ -516,8 +548,8 @@
       </div>
 
       <div data-aos="fade-up">
-        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-      </div>
+        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.457093020949!2d80.63297137500012!3d7.3024323927053025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3676df00217ff%3A0xac59999a6821007e!2sICBT%20Kandy%20Campus!5e0!3m2!1sen!2slk!4v1724156482892!5m2!1sen!2slk" frameborder="0" allowfullscreen></iframe>
+       </div>
 
       <div class="container" data-aos="fade-up">
 

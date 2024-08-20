@@ -46,6 +46,13 @@
   	<description></description>
   	<servlet-class>com.abc.controller.QueryController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CartController</servlet-name>
+  	<display-name>CartController</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.controller.CartController</servlet-class>
+  </servlet>
+  
   
   
 
@@ -78,6 +85,11 @@
   	<servlet-name>QueryController</servlet-name>
   	<url-pattern>/QueryController</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CartController</servlet-name>
+  	<url-pattern>/CartController</url-pattern>
+  </servlet-mapping>
+  
   
   
   
