@@ -111,7 +111,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
 
-    <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
+    <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a Table</a>
 </div>
 
   </header><!-- End Header -->
@@ -207,63 +207,62 @@
 
     <!-- ======= Menu Section ======= -->
 
-    <section id="menu" class="menu section-bg">
-      <div class="container" data-aos="fade-up">
+   <section id="menu" class="menu section-bg">
+  <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Menu</h2>
-          <p>Check Our Tasty Menu</p>
-        </div>
-
-<div class="row" data-aos="fade-up" data-aos-delay="100">
-  <div class="col-lg-12 d-flex justify-content-center">
-    <ul id="menu-filters">
-      <li data-filter="*"class="filter-active">All</li>
-      <li data-filter=".filter-Breakfast">Breakfast</li>
-      <li data-filter=".filter-Lunch">Lunch</li>
-      <li data-filter=".filter-Dinner">Dinner</li>
-      <li data-filter=".filter-Dessert">Desserts</li>
-      <li data-filter=".filter-Beverages">Beverages</li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-  <c:forEach var="product" items="${products}">
-    <div class="col-lg-6 menu-item filter-${product.category}">
-      <img src="${product.imagePath}" class="menu-img" alt="">
-      <div class="menu-content">
-        <a href="#">${product.name}</a><span>Rs ${product.price}</span>
-      </div>
-      <div class="menu-ingredients">
-        ${product.description}
-      </div>
-
-      <!-- Check if customer is logged in -->
-      <c:choose>
-        <c:when test="${sessionScope.customer != null}">
-          <!-- Add to Cart Form -->
-          <form action="cart" method="post">
-            <input type="hidden" name="productId" value="${product.productId}">
-            <input type="hidden" name="quantity" value="1"> <!-- Default quantity to 1 -->
-            <input type="hidden" name="action" value="add">
-            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
-          </form>
-        </c:when>
-        <c:otherwise>
-          <!-- If not logged in, show message and link to login -->
-          <a href="customer?action=login" class="btn btn-warning">Login to add to cart</a>
-        </c:otherwise>
-      </c:choose>
+    <div class="section-title">
+      <h2>Menu</h2>
+      <p>Check Our Tasty Menu</p>
     </div>
-  </c:forEach>
-</div>
 
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="menu-filters">
+          <li data-filter="*" class="filter-active">All</li>
+          <li data-filter=".filter-Breakfast">Breakfast</li>
+          <li data-filter=".filter-Lunch">Lunch</li>
+          <li data-filter=".filter-Dinner">Dinner</li>
+          <li data-filter=".filter-Dessert">Desserts</li>
+          <li data-filter=".filter-Beverages">Beverages</li>
+        </ul>
+      </div>
+    </div>
 
+    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+      <c:forEach var="product" items="${products}">
+        <div class="col-lg-6 menu-item filter-${product.category}">
+          <img src="${product.imagePath}" class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">${product.name}</a><span>Rs ${product.price}</span>
+          </div>
+          <div class="menu-ingredients">
+            ${product.description}
+          </div>
 
-</div>
-    </section><!-- End Menu Section -->
+          <!-- Check if customer is logged in -->
+          <c:choose>
+            <c:when test="${sessionScope.customer != null}">
+              <!-- Add to Cart Form -->
+              <form action="cart" method="post">
+                <input type="hidden" name="productId" value="${product.productId}">
+                <input type="hidden" name="quantity" value="1"> <!-- Default quantity to 1 -->
+                <input type="hidden" name="action" value="add">
+                <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+              </form>
+            </c:when>
+            <c:otherwise>
+              <!-- Show an alert if not logged in -->
+              <button class="btn btn-secondary" onclick="alertLoginMessage()">Add to Cart</button>
+            </c:otherwise>
+          </c:choose>
+        </div>
+      </c:forEach>
+    </div>
+
+  </div>
+</section>
+
+<!-- End Menu Section -->
 
     <!-- ======= Specials Section ======= -->
     <section id="specials" class="specials">
@@ -690,5 +689,11 @@
 <!-- Template Main JS File -->
 
   <script src="assets/js/main.js"></script>
+  <script>
+  function alertLoginMessage() {
+    alert("Please log in before adding items to the cart.");
+    window.location.href = 'customer?action=login'; // Redirect to the login page
+  }
+</script>
 
 </html>

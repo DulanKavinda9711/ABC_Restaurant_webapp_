@@ -1,9 +1,13 @@
 package com.abc.service;
 
 import com.abc.model.Cart;
+import com.abc.model.CartItem;
+import com.abc.model.Customer;
 import com.abc.model.Product;
-import com.abc.service.ProductService;
+import com.abc.dao.DBConnectionFactory;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CartService {
@@ -51,5 +55,35 @@ public class CartService {
 
     public void clearCart(Cart cart) {
         cart.clear();
+    }
+
+    public void checkoutCart(Cart cart, Customer customer, String address) throws SQLException {
+        String orderQuery = "INSERT INTO Orders (customer_name, order_time, order_summary, customer_address, total_price) VALUES (?, CURRENT_TIMESTAMP, ?, ?, ?)";
+
+        // Prepare a string representing products and their quantities
+        StringBuilder orderSummaryBuilder = new StringBuilder();
+        for (CartItem item : cart.getItems()) {
+            orderSummaryBuilder.append(item.getProduct().getName())
+                               .append(" (Qty: ")
+                               .append(item.getQuantity())
+                               .append("), ");
+        }
+
+        if (orderSummaryBuilder.length() > 2) {
+            orderSummaryBuilder.setLength(orderSummaryBuilder.length() - 2); // Remove the last comma and space
+        }
+
+        try (Connection connection = DBConnectionFactory.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(orderQuery)) {
+                statement.setString(1, customer.getName());
+                statement.setString(2, orderSummaryBuilder.toString());
+                statement.setString(3, address);
+                statement.setDouble(4, cart.getTotal());
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log the exception or handle it as needed
+            throw e; // Re-throw if necessary to inform the caller
+        }
     }
 }

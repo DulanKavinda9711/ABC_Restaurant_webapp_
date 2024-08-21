@@ -3,11 +3,15 @@ package com.abc.controller;
 import com.abc.dao.ProductDAO;
 import com.abc.dao.QueryDAO;
 import com.abc.dao.CustomerDAO;
+import com.abc.dao.OrderDAO;
 import com.abc.dao.StaffDAO;
 import com.abc.dao.ReservationDAO;
 import com.abc.model.Product;
+import com.abc.model.Admin;
 import com.abc.model.Customer;
+import com.abc.model.Order;
 import com.abc.model.Staff;
+import com.abc.service.AdminService;
 import com.abc.model.Reservation;
 import com.abc.model.Query;
 
@@ -21,6 +25,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/admin")
+
 public class AdminController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ProductDAO productDAO;
@@ -28,6 +33,7 @@ public class AdminController extends HttpServlet {
     private StaffDAO staffDAO;
     private ReservationDAO reservationDAO;
     private QueryDAO queryDAO;
+    private OrderDAO orderDAO;
 
     @Override
     public void init() {
@@ -35,7 +41,8 @@ public class AdminController extends HttpServlet {
         customerDAO = new CustomerDAO();
         staffDAO = new StaffDAO();
         reservationDAO = new ReservationDAO();
-        queryDAO = new QueryDAO(); // Initialize the QueryDAO
+        queryDAO = new QueryDAO();
+        orderDAO = new OrderDAO();
     }
 
     @Override
@@ -75,14 +82,20 @@ public class AdminController extends HttpServlet {
             case "listReservations":
                 showListReservations(request, response);
                 break;
-            case "listQueries": // Corrected the case name
+            case "listQueries":
                 showListQueries(request, response);
+                break;
+            case "listOrders":
+                showListOrders(request, response);
+                break;
+            case "login":
+                loginAdmin(request, response);
                 break;
             case "logout":
                 logoutAdmin(request, response);
                 break;
             default:
-                response.sendRedirect("adminDashboard.jsp"); // Redirect to the admin dashboard if no valid action is provided
+                response.sendRedirect("adminDashboard.jsp");
                 break;
         }
     }	
@@ -112,13 +125,35 @@ public class AdminController extends HttpServlet {
     }
 
     private void showListQueries(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        List<Query> queries = queryDAO.getAllQueries(); // Corrected to use QueryDAO and proper method
-        request.setAttribute("queries", queries); // Updated attribute name to "queries"
-        request.getRequestDispatcher("WEB-INF/view/listQueries.jsp").forward(request, response); // Updated JSP name
+        List<Query> queries = queryDAO.getAllQueries();
+        request.setAttribute("queries", queries);
+        request.getRequestDispatcher("WEB-INF/view/listQueries.jsp").forward(request, response);
+    }
+    
+    private void showListOrders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        List<Order> orders = orderDAO.getAllOrders();
+        request.setAttribute("orders", orders);
+        request.getRequestDispatcher("WEB-INF/view/listOrders.jsp").forward(request, response);
+    }
+
+    private void loginAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        AdminService adminService = new AdminService();
+        Admin admin = adminService.loginAdmin(username, password);
+
+        if (admin != null) {
+            request.getSession().setAttribute("admin", admin);
+            response.sendRedirect("adminDashboard.jsp");
+        } else {
+            request.setAttribute("error", "Invalid username or password");
+            request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
+        }
     }
 
     private void logoutAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().invalidate();
-        response.sendRedirect("admin?action=login"); // Redirect to the login page after logout
+        response.sendRedirect("adminLogin.jsp");
     }
 }
