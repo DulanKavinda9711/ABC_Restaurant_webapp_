@@ -8,11 +8,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>ABC Restaurant - Index</title>
- 
 
-  <!-- Favicons -->
-
-  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -24,44 +20,14 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   
   
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <style>
-        .service-container {
-            display: flex;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .service-container img {
-            width: 40%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .service-details {
-            padding-left: 20px;
-            width: 60%;
-        }
-        .service-details h2,
-        .service-details h3 {
-            margin: 0;
-        }
-        .service-details h3 {
-            color: #ffc107;
-        }
-        .service-details p {
-            margin-top: 10px;
-        }
-    </style>
+  
 </head>
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
@@ -145,14 +111,9 @@
 
     <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a Table</a>
 </div>
-
-
-
   </header>
   
- 
-
-<!-- Success Message -->
+  <!-- Success Message -->
 <c:if test="${param.success == 'true'}">
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <c:out value="${param.message}" />
@@ -171,8 +132,7 @@
         </button>
     </div>
 </c:if>
-
-
+  
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
@@ -188,7 +148,10 @@
         </div>
       </div>
     </div>
+    
   </section><!-- End Hero -->
+  
+
 
   <main id="main">
 
@@ -406,7 +369,8 @@
       <h2>Reservation</h2>
       <p>Book a Table</p>
     </div>
-
+      
+      
     <!-- Form to Book a Table -->
     <form action="reservation?action=add" method="post" role="form" data-aos="fade-up" data-aos-delay="100">
       <div class="row">
@@ -439,10 +403,7 @@
         <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
         <div class="validate"></div>
       </div>
-      <div class="mb-3">
-        <div class="loading">Loading</div>
-        <div class="sent-message" style="display:none;">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-      </div>
+     
       <div class="text-center"><button type="submit">Book a Table</button></div>
     </form>
   </div>
@@ -659,10 +620,18 @@
   });
 </script>
 
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<script>
+    // Auto-dismiss after 5 seconds (5000ms)
+    setTimeout(function() {
+        var alert = document.querySelector('.alert');
+        if (alert) {
+            alert.classList.add('fade-out');
+            setTimeout(function() {
+                alert.remove();
+            }, 1000); // Wait for the fade-out transition to complete before removing
+        }
+    }, 5000);
+</script>
 
 
 </html>

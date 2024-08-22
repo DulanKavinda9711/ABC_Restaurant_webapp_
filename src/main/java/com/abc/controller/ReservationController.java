@@ -76,7 +76,7 @@ public class ReservationController extends HttpServlet {
         try {
             reservationService.addReservation(reservation);
             // Redirect to index with a success message
-            response.sendRedirect("index?success=true&message=Your reservation has been successfully submitted!");
+            response.sendRedirect("index?success=true&message=Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!");
         } catch (Exception e) {
             // Redirect to index with an error message
             response.sendRedirect("index?error=true&message=There was an error submitting your reservation. Please try again later.");
