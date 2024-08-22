@@ -3,6 +3,8 @@ package com.abc.controller;
 import com.abc.dao.ProductDAO;
 import com.abc.dao.QueryDAO;
 import com.abc.dao.CustomerDAO;
+import com.abc.dao.GalleryDAO;
+import com.abc.dao.OfferDAO;
 import com.abc.dao.OrderDAO;
 import com.abc.dao.StaffDAO;
 import com.abc.dao.ReservationDAO;
@@ -10,6 +12,8 @@ import com.abc.dao.ServiceDAO;
 import com.abc.model.Product;
 import com.abc.model.Admin;
 import com.abc.model.Customer;
+import com.abc.model.Gallery;
+import com.abc.model.Offer;
 import com.abc.model.Order;
 import com.abc.model.Staff;
 import com.abc.service.AdminService;
@@ -37,6 +41,8 @@ public class AdminController extends HttpServlet {
     private QueryDAO queryDAO;
     private OrderDAO orderDAO;
     private ServiceDAO serviceDAO;
+    private OfferDAO offerDAO;
+    private GalleryDAO galleryDAO;
 
     @Override
     public void init() {
@@ -47,6 +53,8 @@ public class AdminController extends HttpServlet {
         queryDAO = new QueryDAO();
         orderDAO = new OrderDAO();
         serviceDAO = new ServiceDAO();
+        offerDAO = new OfferDAO();
+        galleryDAO = new GalleryDAO();
     }
 
     @Override
@@ -94,6 +102,12 @@ public class AdminController extends HttpServlet {
                 break;
             case "listServices":
                 showListServices(request, response);
+                break;
+            case "listOffers":
+                showListOffers(request, response);
+                break;
+            case "listGalleries":
+                showListGalleries(request, response);
                 break;
             case "login":
                 loginAdmin(request, response);
@@ -147,6 +161,18 @@ public class AdminController extends HttpServlet {
         List<Service> services = serviceDAO.getAllServices();
         request.setAttribute("services", services);
         request.getRequestDispatcher("WEB-INF/view/listServices.jsp").forward(request, response);
+    }
+    
+    private void showListOffers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        List<Offer> offers = offerDAO.getAllOffers();
+        request.setAttribute("offers", offers);
+        request.getRequestDispatcher("WEB-INF/view/listOffers.jsp").forward(request, response);
+    }
+    
+    private void showListGalleries(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        List<Gallery> galleries = galleryDAO.getAllGalleries();
+        request.setAttribute("galleries", galleries);
+        request.getRequestDispatcher("WEB-INF/view/listGalleries.jsp").forward(request, response);
     }
 
     private void loginAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

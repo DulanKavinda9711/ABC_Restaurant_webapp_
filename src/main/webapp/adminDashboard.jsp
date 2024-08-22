@@ -155,6 +155,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">List Offers</h5>
+                            <p class="card-text">View Offers.</p>
+                            <a href="admin?action=listOffers" class="btn btn-secondary">Go to Offers</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">List Gallery</h5>
+                            <p class="card-text">View Gallery.</p>
+                            <a href="admin?action=listGalleries" class="btn btn-secondary">Go to Gallery</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

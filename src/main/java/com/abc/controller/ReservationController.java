@@ -74,7 +74,7 @@ public class ReservationController extends HttpServlet {
         reservation.setStatus("Pending");
 
         reservationService.addReservation(reservation);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("index");
     }
 
     private void acceptReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -276,24 +276,5 @@
   /**
    * Form Submission Handling
    */
-  const form = select('#contactForm');
-  const loading = select('.loading');
-  const sentMessage = select('.sent-message');
-  const errorMessage = select('.error-message');
-
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent the default form submission
-
-      loading.style.display = 'block'; // Show loading indicator
-
-      // Simulate form submission (could be AJAX request here)
-      setTimeout(function() {
-        loading.style.display = 'none'; // Hide loading indicator
-        sentMessage.style.display = 'block'; // Show success message
-        errorMessage.style.display = 'none'; // Hide error message
-      }, 2000); // Simulate a delay (e.g., for an AJAX request)
-    });
-  }
-
+  
 })();

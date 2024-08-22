@@ -58,7 +58,7 @@ public class QueryController extends HttpServlet {
         query.setMessage(message);
 
         queryService.addQuery(query);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("index");
     }
 
     private void deleteQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

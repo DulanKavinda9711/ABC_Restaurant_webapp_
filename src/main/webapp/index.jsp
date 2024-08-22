@@ -295,43 +295,46 @@
 <!-- End Menu Section -->
 
     <!-- ======= Specials Section ======= -->
-    <section id="specials" class="specials">
-      <div class="container" data-aos="fade-up">
+ <section id="specials" class="specials">
+  <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Specials</h2>
-          <p>Check Our Specials Offers</p>
+    <div class="section-title">
+      <h2>Offers</h2>
+      <p>Check Our Special Offers - Today</p>
+    </div>
+
+    <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-9 mt-4 mt-lg-0">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+
+            <c:forEach var="offer" items="${offers}">
+    <div class="swiper-slide">
+        <div class="row">
+            <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>${offer.name}</h3>
+                <p class="fst-italic text-justify">- Exclusively Available for Online Orders - </p>
+                <p>${offer.description}</p>
+            </div>
+            <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="${offer.image}" alt="Offer Image" class="img-fluid">
+            </div>
         </div>
+    </div>
+</c:forEach>
+            
 
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-3">
-            <ul class="nav nav-tabs flex-column">
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Modi sit est</a>
-              </li>
-              
-            </ul>
           </div>
-          <div class="col-lg-9 mt-4 mt-lg-0">
-            <div class="tab-content">
-              <div class="tab-pane active show" id="tab-1">
-                <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Architecto ut aperiam autem id</h3>
-                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                    <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-1.png" alt="" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-     		</div>
-          </div>
+          <div class="swiper-pagination"></div>
         </div>
-
       </div>
-    </section><!-- End Specials Section -->
+    </div>
+
+  </div>
+</section>
+ 
+ 
+    <!-- End Specials Section -->
 
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
@@ -435,71 +438,17 @@
 
         <div class="row g-0">
 
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-1.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-2.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-3.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-4.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-5.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-6.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-7.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-8.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-        </div>
+          <c:forEach var="gallery" items="${galleries}">
+                <div class="col-lg-3 col-md-4">
+                    <div class="gallery-item">
+                        <a href="${gallery.image}" class="gallery-lightbox" data-gall="gallery-item">
+                            <img src="${gallery.image}" alt="Gallery Image" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </c:forEach>
+          
+       </div>
 
       </div>
     </section><!-- End Gallery Section -->
@@ -663,6 +612,28 @@
     alert("Please log in before adding items to the cart.");
     window.location.href = 'customer?action=login'; // Redirect to the login page
   }
+  
+
 </script>
+
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      bulletClass: 'swiper-pagination-bullet',
+      bulletActiveClass: 'swiper-pagination-bullet-active',
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+  });
+</script>
+
+
+
+
 
 </html>
