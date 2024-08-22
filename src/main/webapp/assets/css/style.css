@@ -1085,6 +1085,9 @@ section {
 .events .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #cda45e;
 }
+.text-justify {
+    text-align: justify;
+}
 
 /*--------------------------------------------------------------
 # Book A Table

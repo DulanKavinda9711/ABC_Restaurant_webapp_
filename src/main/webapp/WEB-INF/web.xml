@@ -58,6 +58,12 @@
   	<description></description>
   	<servlet-class>com.abc.controller.OrderController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ServiceController</servlet-name>
+  	<display-name>ServiceController</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.controller.ServiceController</servlet-class>
+  </servlet>
   
   
   <servlet-mapping>
@@ -95,6 +101,10 @@
   <servlet-mapping>
   	<servlet-name>OrderController</servlet-name>
   	<url-pattern>/OrderController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ServiceController</servlet-name>
+  	<url-pattern>/ServiceController</url-pattern>
   </servlet-mapping>
  
   

@@ -68,6 +68,7 @@
         <a href="admin?action=listReservations">View Reservations</a>
         <a href="admin?action=listOrders">View Orders</a>
         <a href="admin?action=listQueries">View Messages</a>
+        <a href="admin?action=listservices">View Services</a>
         <a href="adminLogin.jsp">Log Out</a>
     </div>
 
@@ -142,6 +143,15 @@
                             <h5 class="card-title">List Orders</h5>
                             <p class="card-text">View orders.</p>
                             <a href="admin?action=listOrders" class="btn btn-secondary">Go to Orders</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">List Services</h5>
+                            <p class="card-text">View services.</p>
+                            <a href="admin?action=listServices" class="btn btn-secondary">Go to Services</a>
                         </div>
                     </div>
                 </div>

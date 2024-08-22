@@ -6,6 +6,7 @@ import com.abc.dao.CustomerDAO;
 import com.abc.dao.OrderDAO;
 import com.abc.dao.StaffDAO;
 import com.abc.dao.ReservationDAO;
+import com.abc.dao.ServiceDAO;
 import com.abc.model.Product;
 import com.abc.model.Admin;
 import com.abc.model.Customer;
@@ -13,6 +14,7 @@ import com.abc.model.Order;
 import com.abc.model.Staff;
 import com.abc.service.AdminService;
 import com.abc.model.Reservation;
+import com.abc.model.Service;
 import com.abc.model.Query;
 
 import javax.servlet.ServletException;
@@ -34,6 +36,7 @@ public class AdminController extends HttpServlet {
     private ReservationDAO reservationDAO;
     private QueryDAO queryDAO;
     private OrderDAO orderDAO;
+    private ServiceDAO serviceDAO;
 
     @Override
     public void init() {
@@ -43,6 +46,7 @@ public class AdminController extends HttpServlet {
         reservationDAO = new ReservationDAO();
         queryDAO = new QueryDAO();
         orderDAO = new OrderDAO();
+        serviceDAO = new ServiceDAO();
     }
 
     @Override
@@ -87,6 +91,9 @@ public class AdminController extends HttpServlet {
                 break;
             case "listOrders":
                 showListOrders(request, response);
+                break;
+            case "listServices":
+                showListServices(request, response);
                 break;
             case "login":
                 loginAdmin(request, response);
@@ -134,6 +141,12 @@ public class AdminController extends HttpServlet {
         List<Order> orders = orderDAO.getAllOrders();
         request.setAttribute("orders", orders);
         request.getRequestDispatcher("WEB-INF/view/listOrders.jsp").forward(request, response);
+    }
+    
+    private void showListServices(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        List<Service> services = serviceDAO.getAllServices();
+        request.setAttribute("services", services);
+        request.getRequestDispatcher("WEB-INF/view/listServices.jsp").forward(request, response);
     }
 
     private void loginAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
