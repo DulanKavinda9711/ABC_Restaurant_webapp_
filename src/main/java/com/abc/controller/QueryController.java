@@ -57,9 +57,17 @@ public class QueryController extends HttpServlet {
         query.setSubject(subject);
         query.setMessage(message);
 
-        queryService.addQuery(query);
-        response.sendRedirect("index");
+        try {
+            queryService.addQuery(query);
+            // Redirect to index with a success message
+            response.sendRedirect("index?success=true&message=Your query has been successfully submitted!");
+        } catch (Exception e) {
+            // Redirect to index with an error message
+            response.sendRedirect("index?error=true&message=There was an error submitting your query. Please try again later.");
+        }
     }
+
+
 
     private void deleteQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int queryId = Integer.parseInt(request.getParameter("id"));

@@ -73,9 +73,18 @@ public class ReservationController extends HttpServlet {
         reservation.setMessage(message);
         reservation.setStatus("Pending");
 
-        reservationService.addReservation(reservation);
-        response.sendRedirect("index");
+        try {
+            reservationService.addReservation(reservation);
+            // Redirect to index with a success message
+            response.sendRedirect("index?success=true&message=Your reservation has been successfully submitted!");
+        } catch (Exception e) {
+            // Redirect to index with an error message
+            response.sendRedirect("index?error=true&message=There was an error submitting your reservation. Please try again later.");
+        }
     }
+
+
+
 
     private void acceptReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int reservationId = Integer.parseInt(request.getParameter("id"));

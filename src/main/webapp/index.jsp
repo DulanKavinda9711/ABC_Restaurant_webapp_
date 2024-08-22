@@ -24,6 +24,8 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -144,7 +146,32 @@
     <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a Table</a>
 </div>
 
-  </header><!-- End Header -->
+
+
+  </header>
+  
+ 
+
+<!-- Success Message -->
+<c:if test="${param.success == 'true'}">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <c:out value="${param.message}" />
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
+<!-- Error Message -->
+<c:if test="${param.error == 'true'}">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <c:out value="${param.message}" />
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
@@ -633,6 +660,8 @@
 </script>
 
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
 
