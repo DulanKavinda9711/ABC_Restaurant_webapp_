@@ -52,5 +52,19 @@
             </tbody>
         </table>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let tableBody = document.getElementById("queryTableBody");
+            let rows = Array.from(tableBody.rows);
+
+            rows.sort((rowA, rowB) => {
+                let idA = parseInt(rowA.cells[0].textContent);
+                let idB = parseInt(rowB.cells[0].textContent);
+                return idB - idA; // Sorting by ID in descending order (newest first)
+            });
+
+            rows.forEach(row => tableBody.appendChild(row)); // Reorder the rows in the table
+        });
+    </script>
 </body>
 </html>

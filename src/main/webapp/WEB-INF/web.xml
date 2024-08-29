@@ -76,6 +76,12 @@
   	<description></description>
   	<servlet-class>com.abc.controller.GalleryController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>EmailUtil</servlet-name>
+  	<display-name>EmailUtil</display-name>
+  	<description></description>
+  	<servlet-class>com.abc.util.EmailUtil</servlet-class>
+  </servlet>
   
   
   <servlet-mapping>
@@ -125,6 +131,10 @@
   <servlet-mapping>
   	<servlet-name>GalleryController</servlet-name>
   	<url-pattern>/GalleryController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EmailUtil</servlet-name>
+  	<url-pattern>/EmailUtil</url-pattern>
   </servlet-mapping>
  
   

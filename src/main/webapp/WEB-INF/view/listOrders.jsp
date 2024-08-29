@@ -39,16 +39,31 @@
                         <td>${order.customerAddress}</td>
                         <td class="text-right">${order.totalPrice}</td>
                         <td>
-                            
                             <a href="order?action=delete&id=${order.orderId}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?');">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript to Sort and Display Rows Based on Date -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let table = document.querySelector("table tbody");
+            let rows = Array.from(table.rows);
+
+            rows.sort((rowA, rowB) => {
+                let dateA = new Date(rowA.cells[2].textContent); // Assuming cell[2] contains the order date
+                let dateB = new Date(rowB.cells[2].textContent);
+                return dateB - dateA; // Sorting in descending order (newest first)
+            });
+
+            rows.forEach(row => table.appendChild(row)); // Reorder the rows in the table
+        });
+    </script>
 </body>
 </html>
