@@ -1,11 +1,8 @@
 package com.abc.util;
 
 import com.itextpdf.io.source.ByteArrayOutputStream;
-<<<<<<< Updated upstream
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
-=======
->>>>>>> Stashed changes
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -20,25 +17,18 @@ import com.abc.model.Reservation;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-<<<<<<< Updated upstream
 import java.util.stream.Collectors;
-=======
->>>>>>> Stashed changes
 
 public class PDFUtil {
 
     public static ByteArrayOutputStream generateReservationPDF(List<Reservation> reservations) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();  // Use java.io.ByteArrayOutputStream
         try {
-<<<<<<< Updated upstream
             PdfWriter writer = new PdfWriter(baos);
             PdfDocument pdfDoc = new PdfDocument(writer);
             Document document = new Document(pdfDoc);
 
             // Sort reservations in reverse order by date and time
-=======
-            // Sort reservations in reverse order by date and time (assuming these fields exist)
->>>>>>> Stashed changes
             Collections.sort(reservations, new Comparator<Reservation>() {
                 @Override
                 public int compare(Reservation r1, Reservation r2) {
@@ -48,7 +38,6 @@ public class PDFUtil {
                 }
             });
 
-<<<<<<< Updated upstream
             // Add title
             document.add(new Paragraph("Reservations List").setBold().setFontSize(18));
 
@@ -81,37 +70,6 @@ public class PDFUtil {
                 document.add(createTable(pendingReservations, new DeviceRgb(255, 165, 0)));  // Orange header
             }
 
-=======
-            PdfWriter writer = new PdfWriter(baos);
-            PdfDocument pdfDoc = new PdfDocument(writer);
-            Document document = new Document(pdfDoc);
-
-            // Add a title
-            document.add(new Paragraph("Reservations List").setBold().setFontSize(18));
-
-            // Create a table with column headers
-            Table table = new Table(new float[]{1, 2, 2, 2, 2, 1});
-            table.setWidth(UnitValue.createPercentValue(100)); // Set table width to 100% of the page
-
-            table.addHeaderCell(new Cell().add(new Paragraph("ID")));
-            table.addHeaderCell(new Cell().add(new Paragraph("Name")));
-            table.addHeaderCell(new Cell().add(new Paragraph("Email")));
-            table.addHeaderCell(new Cell().add(new Paragraph("Phone")));
-            table.addHeaderCell(new Cell().add(new Paragraph("Date & Time")));
-            table.addHeaderCell(new Cell().add(new Paragraph("Status")));
-
-            // Populate the table with reservation data
-            for (Reservation reservation : reservations) {
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(reservation.getReservationId()))));
-                table.addCell(new Cell().add(new Paragraph(reservation.getName())));
-                table.addCell(new Cell().add(new Paragraph(reservation.getEmail())));
-                table.addCell(new Cell().add(new Paragraph(reservation.getPhone())));
-                table.addCell(new Cell().add(new Paragraph(reservation.getDate() + " " + reservation.getTime())));
-                table.addCell(new Cell().add(new Paragraph(reservation.getStatus())));
-            }
-
-            document.add(table);
->>>>>>> Stashed changes
             document.close();
 
         } catch (Exception e) {
@@ -120,7 +78,6 @@ public class PDFUtil {
 
         return baos;
     }
-<<<<<<< Updated upstream
 
     private static Table createTable(List<Reservation> reservations, Color headerColor) {
         // Create a table with column headers
@@ -147,6 +104,4 @@ public class PDFUtil {
 
         return table;
     }
-=======
->>>>>>> Stashed changes
 }
