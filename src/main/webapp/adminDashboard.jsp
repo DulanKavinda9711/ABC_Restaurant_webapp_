@@ -11,12 +11,15 @@
             padding-top: 56px;
             background-color: #f8f9fa;
         }
+
         .navbar-brand {
             font-weight: bold;
         }
+
         .card-title {
             font-size: 1.25rem;
         }
+
         .sidebar {
             min-height: 100vh;
             background-color: #343a40;
@@ -28,23 +31,73 @@
             width: 250px;
             z-index: 1000;
         }
+
         .sidebar a {
             color: #ffffff;
             text-decoration: none;
             display: block;
             padding: 10px 15px;
+            transition: background-color 0.3s, color 0.3s;
         }
+
         .sidebar a:hover {
             background-color: #495057;
-            color: #ffffff;
+            color: #f8f9fa;
         }
+
+        .sidebar .dropdown-menu {
+            background-color: #ffffff; /* Background color of the dropdown menu */
+            border: none;
+            box-shadow: none;
+        }
+
+        .sidebar .dropdown-item {
+            color: #343a40; /* Text color of dropdown items */
+            padding-left: 30px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar .dropdown-item:hover {
+            background-color: #f1f1f1; /* Light background color on hover */
+            color: #343a40; /* Ensure text color remains the same on hover */
+        }
+
+        .sidebar .dropdown-toggle::after {
+            content: '\f078';
+            font-family: 'FontAwesome';
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .sidebar .accordion-button {
+            background-color: transparent;
+            color: #ffffff;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .sidebar .accordion-button:not(.collapsed) {
+            background-color: #495057;
+        }
+
+        .sidebar .accordion-item {
+            border: none;
+        }
+
+        .sidebar .accordion-body {
+            padding-left: 2rem;
+            background-color: #343a40;
+        }
+
         .main-content {
             margin-left: 250px; /* Matches the sidebar width */
             padding: 20px;
         }
+
         .card {
             margin-bottom: 20px;
         }
+
         .navbar-text {
             color: #ffffff;
         }
@@ -56,29 +109,40 @@
     <div class="sidebar">
         <h4 class="text-center text-white">Admin Area</h4>
         <a href="admin?action=dashboard">Dashboard</a>
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Products</a>
-            <ul class="dropdown-menu">
-                <li><a href="product?action=add" class="dropdown-item">Insert Product</a></li>
-                <li><a href="admin?action=listProducts" class="dropdown-item">View Products</a></li>
-            </ul>
+        <div class="accordion" id="accordionSidebar">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingProducts">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
+                        Products
+                    </button>
+                </h2>
+                <div id="collapseProducts" class="accordion-collapse collapse" aria-labelledby="headingProducts" data-bs-parent="#accordionSidebar">
+                    <div class="accordion-body">
+                        <a href="product?action=add" class="dropdown-item">Insert Product</a>
+                        <a href="admin?action=listProducts" class="dropdown-item">View Products</a>
+                    </div>
+                </div>
+            </div>
+            <a href="admin?action=listCustomers">View Customers</a>
+            <a href="admin?action=listStaff">View Staff</a>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingReservations">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReservations" aria-expanded="false" aria-controls="collapseReservations">
+                        Reservation
+                    </button>
+                </h2>
+                <div id="collapseReservations" class="accordion-collapse collapse" aria-labelledby="headingReservations" data-bs-parent="#accordionSidebar">
+                    <div class="accordion-body">
+                        <a href="admin?action=listReservations" class="dropdown-item">View Reservation</a>
+                        <a href="admin?action=generateReservationsPDF" class="dropdown-item">Download Reservations as PDF</a>
+                    </div>
+                </div>
+            </div>
+            <a href="admin?action=listOrders">View Orders</a>
+            <a href="admin?action=listQueries">View Messages</a>
+            <a href="admin?action=listservices">View Services</a>
+            <a href="adminLogin.jsp">Log Out</a>
         </div>
-        <a href="admin?action=listCustomers">View Customers</a>
-        <a href="admin?action=listStaff">View Staff</a>
-      
-        
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Reservation</a>
-            <ul class="dropdown-menu">
-                <li><a href="admin?action=listReservations" class="dropdown-item">View Reservation</a></li>
-                <li><a href="admin?action=generateReservationsPDF" class="dropdown-item">Download Reservations as PDF</a></li>
-            </ul>
-        </div>
-        
-        <a href="admin?action=listOrders">View Orders</a>
-        <a href="admin?action=listQueries">View Messages</a>
-        <a href="admin?action=listservices">View Services</a>
-        <a href="adminLogin.jsp">Log Out</a>
     </div>
 
     <!-- Main Content -->
@@ -86,11 +150,9 @@
         <!-- Top Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="admin?action=dashboard">Admin Dashboard</a>
+                <a class="navbar-brand" href="admin?action=dashboard">Dashboard</a>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <span class="navbar-text">Welcome, Admin!</span>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="adminLogin.jsp">Logout</a>
                     </li>
@@ -190,3 +252,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
