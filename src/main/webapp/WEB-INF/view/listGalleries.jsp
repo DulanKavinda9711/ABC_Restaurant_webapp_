@@ -31,9 +31,7 @@
                 </c:forEach>
             </tbody>
         </table>
-        <div class="text-center">
-            <a href="gallery?action=add" class="btn btn-primary btn-lg">Add New Image</a>
-        </div>
+      
     </div>
 </body>
 </html>

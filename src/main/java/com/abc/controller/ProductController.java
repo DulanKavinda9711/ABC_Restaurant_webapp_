@@ -94,7 +94,7 @@ public class ProductController extends HttpServlet {
         product.setCategory(category);
 
         productService.addProduct(product);
-        response.sendRedirect("product?action=list");
+        response.sendRedirect("admin");
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -116,12 +116,12 @@ public class ProductController extends HttpServlet {
         Product product = new Product(productId, name, description, price, imagePath, category);
 
         productService.updateProduct(product);
-        response.sendRedirect("product?action=list");
+        response.sendRedirect("admin");
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("id"));
         productService.deleteProduct(productId);
-        response.sendRedirect("product?action=list");
+        response.sendRedirect("admin");
     }
 }

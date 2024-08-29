@@ -80,7 +80,7 @@ public class ServiceController extends HttpServlet {
         service.setImage(imagePath);
 
         serviceService.addService(service);
-        response.sendRedirect("service?action=list");
+        response.sendRedirect("admin");
     }
 
     private void updateService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -100,12 +100,12 @@ public class ServiceController extends HttpServlet {
         Service service = new Service(serviceId, serviceName, imagePath, description);
 
         serviceService.updateService(service);
-        response.sendRedirect("service?action=list");
+        response.sendRedirect("admin");
     }
 
     private void deleteService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int serviceId = Integer.parseInt(request.getParameter("id"));
         serviceService.deleteService(serviceId);
-        response.sendRedirect("service?action=list");
+        response.sendRedirect("admin");
     }
 }

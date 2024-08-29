@@ -48,9 +48,7 @@
                 </c:forEach>
             </tbody>
         </table>
-        <div class="text-center">
-            <a href="offer?action=add" class="btn btn-primary btn-lg">Add New Offer</a>
-        </div>
+       
     </div>
 </body>
 </html>

@@ -120,30 +120,14 @@ public class AdminController extends HttpServlet {
             case "logout":
                 logoutAdmin(request, response);
                 break;
-            case "generateReservationsPDF":
-                generateReservationsPDF(request, response);
-                break;
+           
             default:
                 response.sendRedirect("adminDashboard.jsp");
                 break;
         }
     }
     
-    private void generateReservationsPDF(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
-        List<Reservation> reservations = reservationDAO.getAllReservations();
-        
-        // Generate the PDF
-        ByteArrayOutputStream baos = PDFUtil.generateReservationPDF(reservations);
-
-        // Set the response content type and headers
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=reservations.pdf");
-        response.setContentLength(baos.size());
-
-        // Write the PDF content to the response output stream
-        baos.writeTo(response.getOutputStream());
-        response.getOutputStream().flush();
-    }
+    
 
 
     private void showListProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

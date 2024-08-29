@@ -34,6 +34,6 @@ public class OrderController extends HttpServlet {
     private void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int orderId = Integer.parseInt(request.getParameter("id"));
         orderService.deleteOrder(orderId);
-        response.sendRedirect("order?action=list");
+        response.sendRedirect("admin");
     }
 }
