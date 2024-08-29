@@ -65,7 +65,16 @@
         </div>
         <a href="admin?action=listCustomers">View Customers</a>
         <a href="admin?action=listStaff">View Staff</a>
-        <a href="admin?action=listReservations">View Reservations</a>
+      
+        
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Reservation</a>
+            <ul class="dropdown-menu">
+                <li><a href="admin?action=listReservations" class="dropdown-item">View Reservation</a></li>
+                <li><a href="admin?action=generateReservationsPDF" class="dropdown-item">Download Reservations as PDF</a></li>
+            </ul>
+        </div>
+        
         <a href="admin?action=listOrders">View Orders</a>
         <a href="admin?action=listQueries">View Messages</a>
         <a href="admin?action=listservices">View Services</a>

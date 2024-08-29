@@ -17,6 +17,8 @@ import com.abc.model.Offer;
 import com.abc.model.Order;
 import com.abc.model.Staff;
 import com.abc.service.AdminService;
+import com.abc.util.PDFUtil;
+import com.itextpdf.io.source.ByteArrayOutputStream;
 import com.abc.model.Reservation;
 import com.abc.model.Service;
 import com.abc.model.Query;
@@ -109,6 +111,9 @@ public class AdminController extends HttpServlet {
             case "listGalleries":
                 showListGalleries(request, response);
                 break;
+            case "generateReservationsPDF":
+                generateReservationsPDF(request, response);
+                break;
             case "login":
                 loginAdmin(request, response);
                 break;
@@ -174,6 +179,24 @@ public class AdminController extends HttpServlet {
         request.setAttribute("galleries", galleries);
         request.getRequestDispatcher("WEB-INF/view/listGalleries.jsp").forward(request, response);
     }
+    
+    private void generateReservationsPDF(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        List<Reservation> reservations = reservationDAO.getAllReservations();
+        
+        // Generate the PDF
+        ByteArrayOutputStream baos = PDFUtil.generateReservationPDF(reservations);
+
+        // Set the response content type and headers
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=reservations.pdf");
+        response.setContentLength(baos.size());
+
+        // Write the PDF content to the response output stream
+        baos.writeTo(response.getOutputStream());
+        response.getOutputStream().flush();
+    }
+    
+    
 
     private void loginAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
