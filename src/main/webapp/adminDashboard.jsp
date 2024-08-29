@@ -143,6 +143,18 @@
             <a href="admin?action=listservices">View Services</a>
             <a href="adminLogin.jsp">Log Out</a>
         </div>
+<<<<<<< Updated upstream
+=======
+        <a href="admin?action=listCustomers">View Customers</a>
+        <a href="admin?action=listStaff">View Staff</a>
+        <a href="admin?action=listReservations">View Reservations</a>
+        <a href="admin?action=listOrders">View Orders</a>
+        <a href="admin?action=listQueries">View Messages</a>
+        <a href="admin?action=listservices">View Services</a>
+        <a href="adminLogin.jsp">Log Out</a>
+        <a href="admin?action=generateReservationsPDF" class="btn btn-primary">Download Reservations as PDF</a>
+        
+>>>>>>> Stashed changes
     </div>
 
     <!-- Main Content -->
