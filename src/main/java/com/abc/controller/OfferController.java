@@ -80,7 +80,7 @@ public class OfferController extends HttpServlet {
         offer.setImage(imagePath);
 
         offerService.addOffer(offer);
-        response.sendRedirect("offer?action=list");
+        response.sendRedirect("admin");
     }
 
     private void updateOffer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -100,12 +100,12 @@ public class OfferController extends HttpServlet {
         Offer offer = new Offer(offerId, name, description, imagePath);
 
         offerService.updateOffer(offer);
-        response.sendRedirect("offer?action=list");
+        response.sendRedirect("admin");
     }
 
     private void deleteOffer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int offerId = Integer.parseInt(request.getParameter("id"));
         offerService.deleteOffer(offerId);
-        response.sendRedirect("offer?action=list");
+        response.sendRedirect("admin");
     }
 }

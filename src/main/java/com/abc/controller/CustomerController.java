@@ -79,7 +79,7 @@ public class CustomerController extends HttpServlet {
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int customerId = Integer.parseInt(request.getParameter("id"));
         customerService.deleteCustomer(customerId);
-        response.sendRedirect("customer?action=list");
+        response.sendRedirect("admin");
     }
 
     private void showRegisterForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

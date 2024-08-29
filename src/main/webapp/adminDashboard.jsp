@@ -106,44 +106,94 @@
 <body>
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <h4 class="text-center text-white">Admin Area</h4>
-        <a href="admin?action=dashboard">Dashboard</a>
-        <div class="accordion" id="accordionSidebar">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingProducts">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
-                        Products
-                    </button>
-                </h2>
-                <div id="collapseProducts" class="accordion-collapse collapse" aria-labelledby="headingProducts" data-bs-parent="#accordionSidebar">
-                    <div class="accordion-body">
-                        <a href="product?action=add" class="dropdown-item">Insert Product</a>
-                        <a href="admin?action=listProducts" class="dropdown-item">View Products</a>
-                    </div>
+    <div class="sidebar" style="height: 100vh; overflow-y: auto; background-color: #1f1f1f; padding-top: 20px; position: fixed; width: 250px; top: 0; left: 0; z-index: 1000;">
+    <h4 class="text-center text-white">Admin Area</h4>
+    <a href="admin?action=dashboard">Dashboard</a>
+    <div class="accordion" id="accordionSidebar">
+
+        <div class="accordion-item" style="background-color: #1f1f1f; border-color: #343a40;">
+            <h2 class="accordion-header" id="headingProducts">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts" style="background-color: #343a40; color: #f8f9fa;">
+                    Products
+                </button>
+            </h2>
+            <div id="collapseProducts" class="accordion-collapse collapse" aria-labelledby="headingProducts" data-bs-parent="#accordionSidebar">
+                <div class="accordion-body" style="background-color: #1f1f1f; padding: 10px;">
+                    <a href="javascript:void(0);" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px; margin-bottom: 5px;" onclick="loadContent('product?action=add');">Insert Product</a>
+                    <a href="javascript:void(0);" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px;" onclick="loadContent('admin?action=listProducts');">View Products</a>
                 </div>
             </div>
-            <a href="admin?action=listCustomers">View Customers</a>
-            <a href="admin?action=listStaff">View Staff</a>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingReservations">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReservations" aria-expanded="false" aria-controls="collapseReservations">
-                        Reservation
-                    </button>
-                </h2>
-                <div id="collapseReservations" class="accordion-collapse collapse" aria-labelledby="headingReservations" data-bs-parent="#accordionSidebar">
-                    <div class="accordion-body">
-                        <a href="admin?action=listReservations" class="dropdown-item">View Reservation</a>
-                        <a href="admin?action=generateReservationsPDF" class="dropdown-item">Download Reservations as PDF</a>
-                    </div>
-                </div>
-            </div>
-            <a href="admin?action=listOrders">View Orders</a>
-            <a href="admin?action=listQueries">View Messages</a>
-            <a href="admin?action=listservices">View Services</a>
-            <a href="adminLogin.jsp">Log Out</a>
         </div>
+
+        <a href="javascript:void(0);" onclick="loadContent('admin?action=listCustomers');" style="color: #f8f9fa; background-color: #343a40; padding: 10px 15px; display: block; margin-bottom: 5px;">View Customers</a>
+        <a href="javascript:void(0);" onclick="loadContent('admin?action=listStaff');" style="color: #f8f9fa; background-color: #343a40; padding: 10px 15px; display: block; margin-bottom: 5px;">View Staff</a>
+
+        <div class="accordion-item" style="background-color: #1f1f1f; border-color: #343a40;">
+            <h2 class="accordion-header" id="headingReservations">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReservations" aria-expanded="false" aria-controls="collapseReservations" style="background-color: #343a40; color: #f8f9fa;">
+                    Reservation
+                </button>
+            </h2>
+            <div id="collapseReservations" class="accordion-collapse collapse" aria-labelledby="headingReservations" data-bs-parent="#accordionSidebar">
+                <div class="accordion-body" style="background-color: #1f1f1f; padding: 10px;">
+                    <a href="javascript:void(0);" onclick="loadContent('admin?action=listReservations');" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px; margin-bottom: 5px;">View Reservation</a>
+                    <a href="admin?action=generateReservationsPDF" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px;">Download Reservations as PDF</a>
+                </div>
+            </div>
+        </div>
+
+        <a href="javascript:void(0);" onclick="loadContent('admin?action=listOrders');" style="color: #f8f9fa; background-color: #343a40; padding: 10px 15px; display: block; margin-bottom: 5px;">View Orders</a>
+        <a href="javascript:void(0);" onclick="loadContent('admin?action=listQueries');" style="color: #f8f9fa; background-color: #343a40; padding: 10px 15px; display: block; margin-bottom: 5px;">View Messages</a>
+        <a href="javascript:void(0);" onclick="loadContent('admin?action=listServices');" style="color: #f8f9fa; background-color: #343a40; padding: 10px 15px; display: block; margin-bottom: 5px;">View Services</a>
+
+        <!-- Offer Section -->
+        <div class="accordion-item" style="background-color: #1f1f1f; border-color: #343a40;">
+            <h2 class="accordion-header" id="headingOffers">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOffers" aria-expanded="false" aria-controls="collapseOffers" style="background-color: #343a40; color: #f8f9fa;">
+                    Offer
+                </button>
+            </h2>
+            <div id="collapseOffers" class="accordion-collapse collapse" aria-labelledby="headingOffers" data-bs-parent="#accordionSidebar">
+                <div class="accordion-body" style="background-color: #1f1f1f; padding: 10px;">
+                    <a href="javascript:void(0);" onclick="loadContent('offer?action=add');" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px; margin-bottom: 5px;">Add Offer</a>
+                    <a href="javascript:void(0);" onclick="loadContent('offer?action=list');" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px;">View Offers</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="accordion-item" style="background-color: #1f1f1f; border-color: #343a40;">
+            <h2 class="accordion-header" id="headingGallery">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGallery" aria-expanded="false" aria-controls="collapseGallery" style="background-color: #343a40; color: #f8f9fa;">
+                    Gallery
+                </button>
+            </h2>
+            <div id="collapseGallery" class="accordion-collapse collapse" aria-labelledby="headingGallery" data-bs-parent="#accordionSidebar">
+                <div class="accordion-body" style="background-color: #1f1f1f; padding: 10px;">
+                    <a href="javascript:void(0);" onclick="loadContent('gallery?action=add');" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px; margin-bottom: 5px;">Add New Image</a>
+                    <a href="javascript:void(0);" onclick="loadContent('gallery?action=list');" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px;">View Gallery</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item" style="background-color: #1f1f1f; border-color: #343a40;">
+            <h2 class="accordion-header" id="headingServices">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseServices" aria-expanded="false" aria-controls="collapseServices" style="background-color: #343a40; color: #f8f9fa;">
+                    Service
+                </button>
+            </h2>
+            <div id="collapseServices" class="accordion-collapse collapse" aria-labelledby="headingServices" data-bs-parent="#accordionSidebar">
+                <div class="accordion-body" style="background-color: #1f1f1f; padding: 10px;">
+                    <a href="javascript:void(0);" onclick="loadContent('service?action=add');" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px; margin-bottom: 5px;">Add Service</a>
+                    <a href="javascript:void(0);" onclick="loadContent('admin?action=listServices');" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px;">View Services</a>
+                </div>
+            </div>
+        </div>
+
+        <a href="adminLogin.jsp" style="color: #f8f9fa; background-color: #343a40; padding: 10px 15px; display: block; margin-top: 10px;">Log Out</a>
     </div>
+</div>
+
 
     <!-- Main Content -->
     <div class="main-content">
@@ -162,13 +212,18 @@
 
         <!-- Dashboard Cards -->
         <div class="container mt-5">
+        <div id="dynamic-content" class="col-12">
+            <!-- Product list will be loaded here -->
+       
             <div class="row">
+            
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">List Products</h5>
                             <p class="card-text">View, add, edit, or delete products.</p>
-                            <a href="admin?action=listProducts" class="btn btn-primary">Go to Products</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listProducts');">Go to Products</a>
+                        
                         </div>
                     </div>
                 </div>
@@ -177,7 +232,8 @@
                         <div class="card-body">
                             <h5 class="card-title">List Customers</h5>
                             <p class="card-text">View, add, edit, or delete customers.</p>
-                            <a href="admin?action=listCustomers" class="btn btn-info">Go to Customers</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listCustomers');">Go to Customers</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -186,7 +242,9 @@
                         <div class="card-body">
                             <h5 class="card-title">List Staff</h5>
                             <p class="card-text">View, add, edit, or delete staff members.</p>
-                            <a href="admin?action=listStaff" class="btn btn-secondary">Go to Staff</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listStaff');">Go to Staff</a>
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -195,7 +253,7 @@
                         <div class="card-body">
                             <h5 class="card-title">List Reservations</h5>
                             <p class="card-text">View, accept, reject, or delete reservations.</p>
-                            <a href="admin?action=listReservations" class="btn btn-secondary">Go to Reservations</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listReservations');">Go to Reservations</a>
                         </div>
                     </div>
                 </div>
@@ -204,7 +262,8 @@
                         <div class="card-body">
                             <h5 class="card-title">List Queries</h5>
                             <p class="card-text">View, accept, reject queries.</p>
-                            <a href="admin?action=listQueries" class="btn btn-secondary">Go to Queries</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listQueries');">Go to Queries</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -213,7 +272,8 @@
                         <div class="card-body">
                             <h5 class="card-title">List Orders</h5>
                             <p class="card-text">View orders.</p>
-                            <a href="admin?action=listOrders" class="btn btn-secondary">Go to Orders</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listOrders');">Go to Orders</a>
+                           
                         </div>
                     </div>
                 </div>
@@ -222,7 +282,8 @@
                         <div class="card-body">
                             <h5 class="card-title">List Services</h5>
                             <p class="card-text">View services.</p>
-                            <a href="admin?action=listServices" class="btn btn-secondary">Go to Services</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listServices');">Go to Services</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -231,7 +292,7 @@
                         <div class="card-body">
                             <h5 class="card-title">List Offers</h5>
                             <p class="card-text">View Offers.</p>
-                            <a href="admin?action=listOffers" class="btn btn-secondary">Go to Offers</a>
+                            <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listOffers');">Go to Offers</a>
                         </div>
                     </div>
                 </div>
@@ -240,13 +301,39 @@
                         <div class="card-body">
                             <h5 class="card-title">List Gallery</h5>
                             <p class="card-text">View Gallery.</p>
-                            <a href="admin?action=listGalleries" class="btn btn-secondary">Go to Gallery</a>
+                             <a href="javascript:void(0);" class="btn btn-primary" onclick="loadContent('admin?action=listGalleries');">Go to Gallery</a>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+         </div>
     </div>
+
+
+<script>
+    function loadContent(url) {
+        const dynamicContentDiv = document.getElementById('dynamic-content');
+        
+       
+        dynamicContentDiv.innerHTML = '<div class="text-center mt-4"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+        
+        
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+               
+                dynamicContentDiv.innerHTML = xhr.responseText;
+            } else {
+              
+                dynamicContentDiv.innerHTML = '<div class="alert alert-danger">Failed to load content.</div>';
+            }
+        };
+        xhr.send();
+    }
+</script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

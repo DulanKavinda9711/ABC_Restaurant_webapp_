@@ -72,6 +72,6 @@ public class QueryController extends HttpServlet {
     private void deleteQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int queryId = Integer.parseInt(request.getParameter("id"));
         queryService.deleteQuery(queryId);
-        response.sendRedirect("query?action=list");
+        response.sendRedirect("admin");
     }
 }

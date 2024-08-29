@@ -93,7 +93,7 @@ public class ReservationController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("reservation?action=list");
+        response.sendRedirect("admin");
     }
 
     private void rejectReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -103,7 +103,7 @@ public class ReservationController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("reservation?action=list");
+        response.sendRedirect("admin");
     }
 
     private void deleteReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -113,6 +113,6 @@ public class ReservationController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("reservation?action=list");
+        response.sendRedirect("admin");
     }
 }
