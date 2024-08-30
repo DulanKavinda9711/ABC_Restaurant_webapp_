@@ -97,12 +97,14 @@ public class StaffController extends HttpServlet {
         Staff staff = staffService.loginStaff(email, password);
         if (staff != null) {
             request.getSession().setAttribute("staff", staff);
-            response.sendRedirect("staffDashboard.jsp"); // Redirect to staff dashboard after successful login
+            request.getSession().setAttribute("role", "staff"); // Set the role as "staff" in the session
+            response.sendRedirect("adminDashboard.jsp"); // Redirect to the dashboard after successful login
         } else {
             request.setAttribute("error", "Invalid email or password");
             request.getRequestDispatcher("loginStaff.jsp").forward(request, response);
         }
     }
+
 
     private void listStaff(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

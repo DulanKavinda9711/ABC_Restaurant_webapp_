@@ -210,13 +210,17 @@ public class AdminController extends HttpServlet {
         Admin admin = adminService.loginAdmin(username, password);
 
         if (admin != null) {
+            // Store the admin object in the session
             request.getSession().setAttribute("admin", admin);
+            // Store the role in the session explicitly if necessary
+            request.getSession().setAttribute("role", "admin"); // Assuming the role is "admin"
             response.sendRedirect("adminDashboard.jsp");
         } else {
             request.setAttribute("error", "Invalid username or password");
             request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
         }
     }
+
 
     private void logoutAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().invalidate();
