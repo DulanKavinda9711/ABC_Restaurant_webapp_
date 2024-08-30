@@ -109,18 +109,6 @@
     <div class="sidebar" style="height: 100vh; overflow-y: auto; background-color: #1f1f1f; padding-top: 20px; position: fixed; width: 250px; top: 0; left: 0; z-index: 1000;">
         <h4 class="text-center text-white">Dashboard</h4>
     
-        <!-- Display the role from session -->
-        <h4 class="text-center text-white">
-            Role: 
-            <% 
-                String role = (String) session.getAttribute("role");
-                if (role != null) {
-                    out.print(role);
-                } else {
-                    out.print("Unknown");
-                }
-            %>
-        </h4>
         
         <a href="admin?action=dashboard">Dashboard</a>
         
@@ -240,7 +228,17 @@
         <!-- Top Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="admin?action=dashboard">Dashboard</a>
+                <a class="navbar-brand" href="admin?action=dashboard">  
+                <%
+				    String role = (String) session.getAttribute("role");
+				    if (role != null) {
+				        String capitalizedRole = role.substring(0, 1).toUpperCase() + role.substring(1).toLowerCase();
+				        out.print(capitalizedRole);
+				    } else {
+				        out.print("Unknown");
+				    }
+				%>
+ 							Dashboard</a>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="adminLogin.jsp">Logout</a>
