@@ -107,7 +107,8 @@
 
     <!-- Sidebar -->
     <div class="sidebar" style="height: 100vh; overflow-y: auto; background-color: #1f1f1f; padding-top: 20px; position: fixed; width: 250px; top: 0; left: 0; z-index: 1000;">
-        <h4 class="text-center text-white">Dashboard</h4>
+        
+        <h4 class="text-center text-white">Dashboard  </h4>
     
         
         <a href="admin?action=dashboard">Dashboard</a>
