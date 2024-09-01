@@ -77,8 +77,9 @@ public class CustomerController extends HttpServlet {
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int customerId = Integer.parseInt(request.getParameter("id"));
+    	int customerId = Integer.parseInt(request.getParameter("id"));
         customerService.deleteCustomer(customerId);
+        request.getSession().setAttribute("message", "Successfully removed Customer");
         response.sendRedirect("admin");
     }
 

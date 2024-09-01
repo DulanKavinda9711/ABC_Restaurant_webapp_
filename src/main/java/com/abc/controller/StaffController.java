@@ -120,6 +120,7 @@ public class StaffController extends HttpServlet {
     private void deleteStaff(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int staffId = Integer.parseInt(request.getParameter("id"));
         staffService.deleteStaff(staffId);
+        request.getSession().setAttribute("message", "Successfully removed Staff Member");
         response.sendRedirect("admin");
     }
 }

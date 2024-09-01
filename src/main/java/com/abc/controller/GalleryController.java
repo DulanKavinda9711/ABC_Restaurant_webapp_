@@ -102,12 +102,14 @@ public class GalleryController extends HttpServlet {
 
         Gallery gallery = new Gallery(galleryId, imagePath);
         galleryService.updateGallery(gallery);
+        request.getSession().setAttribute("message", "Image Added Successfully");
         response.sendRedirect("admin");
     }
 
     private void deleteGallery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int galleryId = Integer.parseInt(request.getParameter("id"));
         galleryService.deleteGallery(galleryId);
+        request.getSession().setAttribute("message", "Image Deleted Successfully");
         response.sendRedirect("admin");
     }
 }

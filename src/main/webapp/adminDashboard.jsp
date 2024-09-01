@@ -105,6 +105,19 @@
 </head>
 <body>
 
+<% 
+    String message = (String) session.getAttribute("message");
+    if (message != null) { 
+%>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: fixed; top: 60px; right: 20px; z-index: 1050;">
+        <%= message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% 
+    session.removeAttribute("message");
+    } 
+%>
+
     <!-- Sidebar -->
     <div class="sidebar" style="height: 100vh; overflow-y: auto; background-color: #1f1f1f; padding-top: 20px; position: fixed; width: 250px; top: 0; left: 0; z-index: 1000;">
         
@@ -426,5 +439,8 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>

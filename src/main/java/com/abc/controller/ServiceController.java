@@ -80,6 +80,7 @@ public class ServiceController extends HttpServlet {
         service.setImage(imagePath);
 
         serviceService.addService(service);
+        request.getSession().setAttribute("message", "Service Added Successfully");
         response.sendRedirect("admin");
     }
 
@@ -100,12 +101,14 @@ public class ServiceController extends HttpServlet {
         Service service = new Service(serviceId, serviceName, imagePath, description);
 
         serviceService.updateService(service);
+        request.getSession().setAttribute("message", "Service Updated Successfully");
         response.sendRedirect("admin");
     }
 
     private void deleteService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int serviceId = Integer.parseInt(request.getParameter("id"));
         serviceService.deleteService(serviceId);
+        request.getSession().setAttribute("message", "Service Deleted Successfully");
         response.sendRedirect("admin");
     }
 }
