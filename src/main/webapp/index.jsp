@@ -463,28 +463,27 @@
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>59 Saranankara Rd Kandy Lake,<br>
+           		Kandy 20000 Sri Lanka</p>
               </div>
 
               <div class="open-hours">
                 <i class="bi bi-clock"></i>
                 <h4>Open Hours:</h4>
-                <p>
-                  Monday-Saturday:<br>
-                  11:00 AM - 2300 PM
-                </p>
+                <p>Monday - Friday : 08:30am - 08:30pm<br>
+          		Saturady - Sunday : 10:00am - 08:30pm</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>abcrestaurantsl@gmail.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p>+94 77 234 345</p>
               </div>
 
             </div>
@@ -536,20 +535,16 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-info">
                         <h4>Hours :</h4>
-                        <p>
-                            Mon - Thurs: 11:00am - 11:00pm<br>
-                            Fri - Sun: 09:00am - 11:30pm<br>
-                        </p>
+                        <p>Monday - Friday : 08:30am - 08:30pm<br>
+          				Saturady - Sunday : 10:00am - 08:30pm</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-info">
                         <h4>Address :</h4>
-                        <p>
-                            Kelambakkam - Vandalur Road<br>
-                            Rajan Nagar, Chennai, Tamil Nadu 600127<br>
-                        </p>
+                        <p>59 Saranankara Rd Kandy Lake,<br>
+           				Kandy 20000 Sri Lanka</p>
                     </div>
                 </div>
 
@@ -563,7 +558,7 @@
                             <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                         </div>
                         <p>
-                            <a href="mailto:bananaleaf@gmail.com">bananaleaf@gmail.com</a>
+                            <a href="mailto:abcrestaurantsl@gmail.com">abcrestaurantsl@gmail.com</a>
                         </p>
                     </div>
                 </div>
@@ -574,7 +569,7 @@
 
     <div class="container">
         <div class="copyright">
-            &copy; Copyright <strong><span>Banana Leaf</span></strong> 2020. All Rights Reserved
+            &copy; Copyright <strong><span>ABC Restaurant</span></strong> 2024. All Rights Reserved
         </div>
     </div>
 </footer>
