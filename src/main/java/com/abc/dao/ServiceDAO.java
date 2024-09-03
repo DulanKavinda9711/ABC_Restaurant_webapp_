@@ -67,4 +67,18 @@ public class ServiceDAO {
         }
         return services;
     }
+    
+    public int getServiceCount() throws SQLException {
+        String query = "SELECT COUNT(*) AS count FROM Service";
+        try (Connection connection = DBConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        } 
+        return 0;
+    }
+
 }

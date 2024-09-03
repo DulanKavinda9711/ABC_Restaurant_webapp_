@@ -17,6 +17,9 @@ import com.abc.model.Offer;
 import com.abc.model.Order;
 import com.abc.model.Staff;
 import com.abc.service.AdminService;
+import com.abc.service.OfferService;
+import com.abc.service.OrderService;
+import com.abc.service.ServiceService;
 import com.abc.util.PDFUtil;
 import com.itextpdf.io.source.ByteArrayOutputStream;
 import com.abc.model.Reservation;
@@ -33,9 +36,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/admin")
-
 public class AdminController extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
     private ProductDAO productDAO;
     private CustomerDAO customerDAO;
     private StaffDAO staffDAO;
@@ -114,21 +117,45 @@ public class AdminController extends HttpServlet {
             case "generateReservationsPDF":
                 generateReservationsPDF(request, response);
                 break;
+            case "getProductCount":
+                getProductCount(request, response);
+                break;
+            case "getCustomerCount":
+                getCustomerCount(request, response);
+                break;
+            case "getStaffCount":
+                getStaffCount(request, response);
+                break;
+            case "getReservationCount":
+                getReservationCount(request, response);
+                break;
+            case "getQueryCount":
+                getQueryCount(request, response);
+                break;
+            
+            case "getServiceCount":
+                getServiceCount(request, response);
+                break;
+            case "getOrderCount":
+                getOrderCount(request, response);
+                break;
+            case "getOfferCount":
+                getOfferCount(request, response);
+                break;
+            case "getGalleryCount":
+                getGalleryCount(request, response);
+                break;
             case "login":
                 loginAdmin(request, response);
                 break;
             case "logout":
                 logoutAdmin(request, response);
                 break;
-           
             default:
                 response.sendRedirect("adminDashboard.jsp");
                 break;
         }
     }
-    
-    
-
 
     private void showListProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         List<Product> products = productDAO.getAllProducts();
@@ -200,8 +227,108 @@ public class AdminController extends HttpServlet {
         response.getOutputStream().flush();
     }
     
+    private void getProductCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int productCount = productDAO.getProductCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"productCount\": " + productCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve product count.\"}");
+        }
+    }
     
+    private void getCustomerCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int customerCount = customerDAO.getCustomerCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"customerCount\": " + customerCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve customer count.\"}");
+        }
+    }
+    
+    private void getStaffCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int staffCount = staffDAO.getStaffCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"staffCount\": " + staffCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve staff count.\"}");
+        }
+    }
+    
+    private void getReservationCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int reservationCount = reservationDAO.getReservationCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"reservationCount\": " + reservationCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve reservation count.\"}");
+        }
+    }
+    
+    private void getQueryCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int queryCount = queryDAO.getQueryCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"queryCount\": " + queryCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve query count.\"}");
+        }
+    }
+    
+    private void getServiceCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int serviceCount = serviceDAO.getServiceCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"serviceCount\": " + serviceCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve service count.\"}");
+        }
+    }
+    
+    private void getOrderCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int orderCount = OrderService.getInstance().getOrderCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"orderCount\": " + orderCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve order count.\"}");
+        }
+    }
+    
+    private void getOfferCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int offerCount = offerDAO.getOfferCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"offerCount\": " + offerCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve offer count.\"}");
+        }
+    }
+    
+    private void getGalleryCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            int galleryCount = galleryDAO.getGalleryCount();
+            response.setContentType("application/json");
+            response.getWriter().write("{\"galleryCount\": " + galleryCount + "}");
+        } catch (SQLException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("{\"error\": \"Unable to retrieve offer count.\"}");
+        }
+    }
 
+
+
+    
     private void loginAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -220,7 +347,6 @@ public class AdminController extends HttpServlet {
             request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
         }
     }
-
 
     private void logoutAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().invalidate();

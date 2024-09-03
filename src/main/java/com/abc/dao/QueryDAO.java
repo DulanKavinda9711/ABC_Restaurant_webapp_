@@ -53,4 +53,17 @@ public class QueryDAO {
             e.printStackTrace();
         }
     }
+    
+    public int getQueryCount() throws SQLException {
+        String queryStatement = "SELECT COUNT(*) FROM Query";
+        try (Connection connection = DBConnectionFactory.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(queryStatement)) {
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        }
+        return 0;
+    }
+
 }

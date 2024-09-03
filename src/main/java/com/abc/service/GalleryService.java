@@ -40,4 +40,9 @@ public class GalleryService {
     public void deleteGallery(int galleryId) {
         galleryDAO.deleteGallery(galleryId);
     }
+    
+    public int getGalleryCount() throws SQLException {
+        return galleryDAO.getGalleryCount();
+    }
+
 }

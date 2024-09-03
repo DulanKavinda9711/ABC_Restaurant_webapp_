@@ -40,5 +40,22 @@ public class OrderDAO {
             e.printStackTrace();
         }
     }
+	
+	public int getOrderCount() throws SQLException {
+	    String query = "SELECT COUNT(*) AS count FROM Orders";
+	    int count = 0;
+
+	    try (Connection connection = DBConnectionFactory.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(query);
+	         ResultSet resultSet = statement.executeQuery()) {
+	        if (resultSet.next()) {
+	            count = resultSet.getInt("count");
+	        }
+	    }
+
+	    return count;
+	}
+
+
 
 }

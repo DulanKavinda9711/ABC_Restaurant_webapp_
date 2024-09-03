@@ -1,5 +1,6 @@
 package com.abc.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import com.abc.dao.OfferDAO;
 import com.abc.model.Offer;
@@ -38,4 +39,9 @@ public class OfferService {
     public List<Offer> getAllOffers() {
         return offerDAO.getAllOffers();
     }
+    
+    public int getOfferCount() throws SQLException {
+        return offerDAO.getOfferCount();
+    }
+
 }

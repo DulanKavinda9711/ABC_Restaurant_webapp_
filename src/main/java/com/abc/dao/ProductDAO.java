@@ -110,4 +110,27 @@ public class ProductDAO {
 
         return products;
     }
+    
+    public int getProductCount() throws SQLException {
+        String query = "SELECT COUNT(*) AS count FROM Product";
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int count = 0;
+
+        try {
+            connection = DBConnectionFactory.getConnection();
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+        } finally {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+
+        return count;
+    }
 }

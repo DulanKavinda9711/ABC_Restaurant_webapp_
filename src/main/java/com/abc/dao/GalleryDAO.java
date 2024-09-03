@@ -55,4 +55,17 @@ public class GalleryDAO {
         }
         return galleries;
     }
+    
+    public int getGalleryCount() throws SQLException {
+        String query = "SELECT COUNT(*) AS count FROM Gallery";
+        try (Connection connection = DBConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        }
+        return 0;
+    }
+
 }

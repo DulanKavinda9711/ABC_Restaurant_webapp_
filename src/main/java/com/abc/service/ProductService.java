@@ -50,4 +50,8 @@ public class ProductService {
     public void deleteProduct(int productId) {
         productDAO.deleteProduct(productId);
     }
+    
+    public int getProductCount() throws SQLException {
+        return productDAO.getProductCount();
+    }
 }

@@ -1,5 +1,6 @@
 package com.abc.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import com.abc.dao.ServiceDAO;
 import com.abc.model.Service;
@@ -39,4 +40,9 @@ public class ServiceService {
     public void deleteService(int serviceId) {
         serviceDAO.deleteService(serviceId);
     }
+    
+    public int getServiceCount() throws SQLException {
+        return serviceDAO.getServiceCount();
+    }
+
 }

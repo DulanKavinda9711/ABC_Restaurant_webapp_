@@ -40,4 +40,8 @@ public class ReservationService {
     public void deleteReservation(int reservationId) throws SQLException {
         reservationDAO.deleteReservation(reservationId);
     }
+    
+    public int getReservationCount() throws SQLException {
+        return reservationDAO.getReservationCount();
+    }
 }

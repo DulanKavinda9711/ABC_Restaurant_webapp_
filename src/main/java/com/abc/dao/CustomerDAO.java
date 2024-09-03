@@ -29,6 +29,18 @@ public class CustomerDAO {
         }
         return customers;
     }
+    
+    public int getCustomerCount() throws SQLException {
+        String query = "SELECT COUNT(*) AS count FROM Customer";
+        try (Connection connection = DBConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        }
+        return 0;
+    }
 
     public void deleteCustomer(int customerId) {
         String query = "DELETE FROM Customer WHERE customer_id = ?";

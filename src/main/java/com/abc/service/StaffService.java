@@ -27,4 +27,8 @@ public class StaffService {
     public void deleteStaff(int staffId) {
         staffDAO.deleteStaff(staffId);
     }
+    
+    public int getStaffCount() throws SQLException {
+        return staffDAO.getStaffCount();
+    }
 }

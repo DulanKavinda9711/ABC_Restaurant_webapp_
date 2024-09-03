@@ -1,5 +1,6 @@
 package com.abc.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import com.abc.dao.QueryDAO;
 import com.abc.model.Query;
@@ -34,5 +35,9 @@ public class QueryService {
 
     public void deleteQuery(int queryId) {
         queryDAO.deleteQuery(queryId);
+    }
+    
+    public int getQueryCount() throws SQLException {
+        return queryDAO.getQueryCount();
     }
 }
