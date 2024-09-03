@@ -36,7 +36,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="reservationTableBody">
                 <c:forEach var="reservation" items="${reservations}">
                     <tr>
                         <td>${reservation.reservationId}</td>
@@ -58,19 +58,7 @@
             </tbody>
         </table>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let table = document.querySelector("table tbody");
-            let rows = Array.from(table.rows);
-
-            rows.sort((rowA, rowB) => {
-                let dateA = new Date(rowA.cells[4].textContent + ' ' + rowA.cells[5].textContent);
-                let dateB = new Date(rowB.cells[4].textContent + ' ' + rowB.cells[5].textContent);
-                return dateB - dateA; // Sorting in descending order (newest first)
-            });
-
-            rows.forEach(row => table.appendChild(row)); // Reorder the rows in the table
-        });
-    </script>
+    
+    
 </body>
 </html>

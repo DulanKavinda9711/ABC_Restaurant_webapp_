@@ -19,11 +19,53 @@
             width: 100px;
             margin-top: 10px;
         }
+        /* General Body Styling */
+        body {
+            padding-top: 56px;
+            background-color: #ffffff; /* Dark black background */
+            color: #f8f9fa; /* Light text color */
+            font-family: 'Poppins', sans-serif; /* Use Poppins font */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items at the start of the container */
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: #000; /* Solid black header */
+            padding: 15px;
+            text-align: center;
+            font-size: 26px;
+            color: #ffffff; /* White color for text */
+            font-weight: 500; /* Medium weight for better readability */
+            letter-spacing: 1px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            font-family: 'Poppins', sans-serif; /* Apply Poppins font to header */
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 450px;
+            background-color: #ffffff; /* Slightly lighter black for contrast */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            margin-top: 100px; /* Reduced margin-top to lift the form up */
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+<div class="header">
         <h1 class="text-center">Edit Offer</h1>
+    </div>
+    <div class="container">
+        
         <form action="offer?action=edit" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="${offer.offerId}">
             <div class="form-group">

@@ -6,8 +6,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <style>
         .container {
-            margin-top: 50px;
+            margin-top: 10px;
             max-width: 600px;
+            padding: 20px; /* Added padding for better spacing */
+            background-color: #d6dadf; /* Light background color */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            
         }
         .form-group {
             margin-bottom: 15px;

@@ -44,6 +44,7 @@ public class ReservationController extends HttpServlet {
     private void listReservations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("reservations", reservationService.getAllReservations());
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,29 +91,34 @@ public class ReservationController extends HttpServlet {
         int reservationId = Integer.parseInt(request.getParameter("id"));
         try {
             reservationService.updateReservationStatus(reservationId, "Accepted");
+            request.getSession().setAttribute("message", "Accepted Reservation Successfully");
+            response.sendRedirect("admin?action=dashboard");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("admin");
     }
 
     private void rejectReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int reservationId = Integer.parseInt(request.getParameter("id"));
         try {
             reservationService.updateReservationStatus(reservationId, "Rejected");
+            request.getSession().setAttribute("message", "Rejected Reservation Successfully");
+            response.sendRedirect("admin?action=dashboard");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("admin");
+        
     }
 
     private void deleteReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int reservationId = Integer.parseInt(request.getParameter("id"));
         try {
             reservationService.deleteReservation(reservationId);
+            request.getSession().setAttribute("message", "Deleted Reservation Successfully");
+            response.sendRedirect("admin?action=dashboard");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("admin");
+        
     }
 }

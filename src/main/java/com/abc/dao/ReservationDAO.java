@@ -38,7 +38,7 @@ public class ReservationDAO {
 
     public List<Reservation> getAllReservations() throws SQLException {
         List<Reservation> reservations = new ArrayList<>();
-        String query = "SELECT * FROM Reservation";
+        String query = "SELECT * FROM Reservation ORDER BY reservation_id DESC"; // Order by reservation_id in descending order
 
         Connection connection = DBConnectionFactory.getConnection();
         Statement statement = connection.createStatement();
@@ -62,6 +62,7 @@ public class ReservationDAO {
 
         return reservations;
     }
+
 
     public void updateReservationStatus(int reservationId, String status) throws SQLException {
         String query = "UPDATE Reservation SET status = ? WHERE reservation_id = ?";
