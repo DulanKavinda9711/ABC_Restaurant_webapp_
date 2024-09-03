@@ -143,65 +143,101 @@
 		    content: '\f077'; /* Code for down-pointing arrow when expanded */
 		}
 		
-		.btn-red {
-		    background-color: #dc3545;
-		    border-color: #dc3545;
-		}
 		
-		.card-red {
-		    background-color: #f8d7da;
-		    border-color: #f5c6cb;
-		}
 		
-		.btn-blue {
-		    background-color: #007bff;
-		    border-color: #007bff;
-		}
+		.custom-card-red {
+    background: linear-gradient(90deg, #ff758c 0%, #ff7eb3 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.custom-card-blue {
+    background: linear-gradient(90deg, #36d1dc 0%, #5b86e5 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.custom-card-green {
+    background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.custom-card-orange {
+    background: linear-gradient(90deg, #f2994a 0%, #f2c94c 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.custom-card-purple {
+    background: linear-gradient(90deg, #9d50bb 0%, #6e48aa 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.custom-card-teal {
+    background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.custom-card-red-dark {
+    background: linear-gradient(90deg, #cb356b 0%, #bd3f32 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.custom-card-blue-dark {
+    background: linear-gradient(90deg, #141e30 0%, #243b55 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.custom-card-green-dark {
+    background: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.card-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.card-icon {
+    font-size: 3rem;
+}
+
+.btn-transparent {
+    color: white;
+    text-decoration: none;
+    margin-top: 15px;
+    font-weight: bold;
+    display: block;
+    text-align: right;
+}
+
+.btn-transparent:hover {
+    color: rgba(255,255,255,0.8);
+    text-decoration: underline;
+}
+	
 		
-		.card-blue {
-		    background-color: #d1ecf1;
-		    border-color: #bee5eb;
-		}
-		
-		.btn-green {
-		    background-color: #28a745;
-		    border-color: #28a745;
-		}
-		
-		.card-green {
-		    background-color: #d4edda;
-		    border-color: #c3e6cb;
-		}
-		
-		.btn-orange {
-		    background-color: #fd7e14;
-		    border-color: #fd7e14;
-		}
-		
-		.card-orange {
-		    background-color: #ffe8cc;
-		    border-color: #ffdfb8;
-		}
-		
-		.btn-purple {
-		    background-color: #6f42c1;
-		    border-color: #6f42c1;
-		}
-		
-		.card-purple {
-		    background-color: #e2d5f3;
-		    border-color: #d7c1f7;
-		}
-		
-		.btn-teal {
-		    background-color: #20c997;
-		    border-color: #20c997;
-		}
-		
-		.card-teal {
-		    background-color: #c3e6e3;
-		    border-color: #c1e7e7;
-		}
 		
 		        
     </style>
@@ -407,6 +443,7 @@
                 </ul>
             </div>
         </nav>
+       
 
         <!-- Dashboard Cards -->
         <div class="container mt-5">
@@ -415,165 +452,201 @@
                     <!-- Conditional content based on role -->
                     <c:choose>
                         <c:when test="${role == 'staff'}">
-                              <div class="col-md-4">
-							    <div class="card card-red">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-box"></i> Products
-							            </h5>
-							            <p class="card-text">Total Products: <span id="productCount">Loading...</span></p>
-							            <a href="javascript:void(0);" class="btn btn-red" onclick="loadContent('admin?action=listProducts');">Go to Products</a>
+                               <div class="col-md-4">
+							        <div class="card custom-card-red text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="productCount">Loading...</h2>
+							                    <p class="card-text">Total Products</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-box card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listProducts');">Go to Products</a>
 							        </div>
 							    </div>
-							</div>
                             <div class="col-md-4">
-							    <div class="card card-blue">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-users"></i> Customers
-							            </h5>
-							            <p class="card-text">Total Customers: <span id="customerCount">Loading...</span></p> <!-- Placeholder for customer count -->
-							            <a href="javascript:void(0);" class="btn btn-blue" onclick="loadContent('admin?action=listCustomers');">Go to Customers</a>
+							        <div class="card custom-card-blue text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="customerCount">Loading...</h2>
+							                    <p class="card-text">Total Customers</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-users card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listCustomers');">Go to Customers</a>
 							        </div>
 							    </div>
-							</div>
                             <div class="col-md-4">
-							    <div class="card card-orange">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-calendar-alt"></i> Reservations
-							            </h5>
-							            <p class="card-text">Total Reservation: <span id="reservationCount">Loading...</span></p> <!-- Placeholder for staff count -->
-							            <a href="javascript:void(0);" class="btn btn-orange" onclick="loadContent('admin?action=listReservations');">Go to Reservations</a>
+							        <div class="card custom-card-orange text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="reservationCount">Loading...</h2>
+							                    <p class="card-text">Total Reservations</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-calendar-alt card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listReservations');">Go to Reservations</a>
 							        </div>
 							    </div>
-							</div>
                             <div class="col-md-4">
-							    <div class="card card-purple">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-question-circle"></i> Queries
-							            </h5>
-							            <p class="card-text">Total Queries: <span id="queryCount">Loading...</span></p> <!-- Placeholder for query count -->
-							            <a href="javascript:void(0);" class="btn btn-purple" onclick="loadContent('admin?action=listQueries');">Go to Queries</a>
+							        <div class="card custom-card-purple text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="queryCount">Loading...</h2>
+							                    <p class="card-text">Total Queries</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-question-circle card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listQueries');">Go to Queries</a>
 							        </div>
 							    </div>
-							</div>
                         </c:when>
                         <c:otherwise>
-                            <!-- Admin-specific content -->
-                            <div class="col-md-4">
-							    <div class="card card-red">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-box"></i> Products
-							            </h5>
-							            <p class="card-text">Total Products: <span id="productCount">Loading...</span></p>
-							            <a href="javascript:void(0);" class="btn btn-red" onclick="loadContent('admin?action=listProducts');">Go to Products</a>
+						<!-- Admin-specific content -->
+							    <div class="col-md-4">
+							        <div class="card custom-card-red text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="productCount">Loading...</h2>
+							                    <p class="card-text">Total Products</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-box card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listProducts');">Go to Products</a>
 							        </div>
 							    </div>
-							</div>
-														
-							<div class="col-md-4">
-							    <div class="card card-blue">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-users"></i> Customers
-							            </h5>
-							            <p class="card-text">Total Customers: <span id="customerCount">Loading...</span></p> <!-- Placeholder for customer count -->
-							            <a href="javascript:void(0);" class="btn btn-blue" onclick="loadContent('admin?action=listCustomers');">Go to Customers</a>
-							        </div>
-							    </div>
-							</div>
-														
-							<div class="col-md-4">
-							    <div class="card card-green">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-user-tie"></i> Staff
-							            </h5>
-							            <p class="card-text">Total Staff: <span id="staffCount">Loading...</span></p> <!-- Placeholder for staff count -->
-							            <a href="javascript:void(0);" class="btn btn-green" onclick="loadContent('admin?action=listStaff');">Go to Staff</a>
-							        </div>
-							    </div>
-							</div>
 							
-							<div class="col-md-4">
-							    <div class="card card-orange">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-calendar-alt"></i> Reservations
-							            </h5>
-							            <p class="card-text">Total Reservation: <span id="reservationCount">Loading...</span></p> <!-- Placeholder for staff count -->
-							            <a href="javascript:void(0);" class="btn btn-orange" onclick="loadContent('admin?action=listReservations');">Go to Reservations</a>
+							    <div class="col-md-4">
+							        <div class="card custom-card-blue text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="customerCount">Loading...</h2>
+							                    <p class="card-text">Total Customers</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-users card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listCustomers');">Go to Customers</a>
 							        </div>
 							    </div>
-							</div>
 							
-							<div class="col-md-4">
-							    <div class="card card-purple">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-question-circle"></i> Queries
-							            </h5>
-							            <p class="card-text">Total Queries: <span id="queryCount">Loading...</span></p> <!-- Placeholder for query count -->
-							            <a href="javascript:void(0);" class="btn btn-purple" onclick="loadContent('admin?action=listQueries');">Go to Queries</a>
+							    <div class="col-md-4">
+							        <div class="card custom-card-green text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="staffCount">Loading...</h2>
+							                    <p class="card-text">Total Staff</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-user-tie card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listStaff');">Go to Staff</a>
 							        </div>
 							    </div>
-							</div>
 							
-							
-							<div class="col-md-4">
-							    <div class="card card-teal">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-box-open"></i> Orders
-							            </h5>
-							            <p class="card-text">Total Orders: <span id="orderCount">Loading...</span></p> <!-- Placeholder for order count -->
-							            <a href="javascript:void(0);" class="btn btn-teal" onclick="loadContent('admin?action=listOrders');">Go to Orders</a>
+							    <div class="col-md-4">
+							        <div class="card custom-card-orange text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="reservationCount">Loading...</h2>
+							                    <p class="card-text">Total Reservations</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-calendar-alt card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listReservations');">Go to Reservations</a>
 							        </div>
 							    </div>
-							</div>
 							
-							
-							<div class="col-md-4">
-							    <div class="card card-red">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-concierge-bell"></i> Services
-							            </h5>
-							            <p class="card-text">Total Services: <span id="serviceCount">Loading...</span></p> <!-- Placeholder for service count -->
-							            <a href="javascript:void(0);" class="btn btn-red" onclick="loadContent('admin?action=listServices');">Go to Services</a>
+							    <div class="col-md-4">
+							        <div class="card custom-card-purple text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="queryCount">Loading...</h2>
+							                    <p class="card-text">Total Queries</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-question-circle card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listQueries');">Go to Queries</a>
 							        </div>
 							    </div>
-							</div>
 							
-							<div class="col-md-4">
-							    <div class="card card-blue">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-tags"></i> Offers
-							            </h5>
-							            <p class="card-text">Total Offers: <span id="offerCount">Loading...</span></p> <!-- Placeholder for offer count -->
-							            <a href="javascript:void(0);" class="btn btn-blue" onclick="loadContent('admin?action=listOffers');">Go to Offers</a>
+							    <div class="col-md-4">
+							        <div class="card custom-card-teal text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="orderCount">Loading...</h2>
+							                    <p class="card-text">Total Orders</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-box-open card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listOrders');">Go to Orders</a>
 							        </div>
 							    </div>
-							</div>
 							
-							<div class="col-md-4">
-							    <div class="card card-green">
-							        <div class="card-body">
-							            <h5 class="card-title">
-							                <i class="fas fa-images"></i> Gallery
-							            </h5>
-							            <p class="card-text">Total Images: <span id="galleryCount">Loading...</span></p>
-							            <a href="javascript:void(0);" class="btn btn-green" onclick="loadContent('admin?action=listGalleries');">Go to Gallery</a>
+							    <div class="col-md-4">
+							        <div class="card custom-card-red-dark text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="serviceCount">Loading...</h2>
+							                    <p class="card-text">Total Services</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-concierge-bell card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listServices');">Go to Services</a>
 							        </div>
 							    </div>
-							</div>
-                            
-                            
-                        </c:otherwise>
+							
+							    <div class="col-md-4">
+							        <div class="card custom-card-blue-dark text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="offerCount">Loading...</h2>
+							                    <p class="card-text">Total Offers</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-tags card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listOffers');">Go to Offers</a>
+							        </div>
+							    </div>
+							
+							    <div class="col-md-4">
+							        <div class="card custom-card-green-dark text-white">
+							            <div class="card-body d-flex justify-content-between align-items-center">
+							                <div>
+							                    <h2 class="card-number" id="galleryCount">Loading...</h2>
+							                    <p class="card-text">Total Images</p>
+							                </div>
+							                <div>
+							                    <i class="fas fa-images card-icon"></i>
+							                </div>
+							            </div>
+							            <a href="javascript:void(0);" class="btn btn-transparent" onclick="loadContent('admin?action=listGalleries');">Go to Gallery</a>
+							        </div>
+							    </div>
+							</c:otherwise>
+                        
                     </c:choose>
                 </div>
             </div>
@@ -632,46 +705,57 @@
     </script>
     
     <script>
-document.addEventListener("DOMContentLoaded", function() {
-    fetchAllCounts();
-});
-
-function fetchAllCounts() {
-    Promise.all([
-        fetchCount('admin?action=getProductCount', 'productCount'),
-        fetchCount('admin?action=getCustomerCount', 'customerCount'),
-        fetchCount('admin?action=getStaffCount', 'staffCount'),
-        fetchCount('admin?action=getReservationCount', 'reservationCount'),
-        fetchCount('admin?action=getQueryCount', 'queryCount'),
-        fetchCount('admin?action=getServiceCount', 'serviceCount'),
-        fetchCount('admin?action=getOrderCount', 'orderCount'),
-        fetchCount('admin?action=getOfferCount', 'offerCount'),
-        fetchCount('admin?action=getGalleryCount', 'galleryCount')
-    ])
-    .then(() => {
-        console.log('All counts fetched successfully');
-    })
-    .catch(error => {
-        console.error('Error fetching some counts:', error);
+    document.addEventListener("DOMContentLoaded", function() {
+        fetchAllCounts();
     });
-}
 
-function fetchCount(url, elementId) {
-    return fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data[elementId] !== undefined) {
-                document.getElementById(elementId).textContent = data[elementId];
-            } else {
-                document.getElementById(elementId).textContent = "Error";
-            }
+    function fetchAllCounts(retries = 3) {
+        Promise.all([
+            fetchCount('admin?action=getProductCount', 'productCount', retries),
+            fetchCount('admin?action=getCustomerCount', 'customerCount', retries),
+            fetchCount('admin?action=getStaffCount', 'staffCount', retries),
+            fetchCount('admin?action=getReservationCount', 'reservationCount', retries),
+            fetchCount('admin?action=getQueryCount', 'queryCount', retries),
+            fetchCount('admin?action=getServiceCount', 'serviceCount', retries),
+            fetchCount('admin?action=getOrderCount', 'orderCount', retries),
+            fetchCount('admin?action=getOfferCount', 'offerCount', retries),
+            fetchCount('admin?action=getGalleryCount', 'galleryCount', retries)
+        ])
+        .then(() => {
+            console.log('All counts fetched successfully');
         })
         .catch(error => {
-            console.error(`Error fetching ${elementId}:`, error);
-            document.getElementById(elementId).textContent = "Error";
+            console.error('Error fetching some counts:', error);
         });
-}
-</script>
+    }
+
+    function fetchCount(url, elementId, retries) {
+        return fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data[elementId] !== undefined) {
+                    document.getElementById(elementId).textContent = data[elementId];
+                } else {
+                    document.getElementById(elementId).textContent = "No data available";
+                }
+            })
+            .catch(error => {
+                console.error(`Error fetching ${elementId}:`, error);
+                if (retries > 0) {
+                    setTimeout(() => fetchCount(url, elementId, retries - 1), 1000); // Retry after 1 second
+                    document.getElementById(elementId).textContent = "Loading...";
+                } else {
+                    document.getElementById(elementId).textContent = "Failed to load data";
+                }
+            });
+    }
+
+	</script>
     
 
 
