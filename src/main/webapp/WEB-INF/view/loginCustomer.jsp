@@ -148,7 +148,7 @@
             <p>Not registered? <a href="customer?action=register">Register here</a></p>
         </div>
         <div class="text-center mt-4">
-            <a href="index.jsp" class="btn btn-secondary w-100">Home</a>
+            <a href="index" class="btn btn-secondary w-100">Home</a>
         </div>
     </div>
 
