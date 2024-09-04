@@ -2,6 +2,7 @@ package com.abc.controller;
 
 import com.abc.model.Cart;
 import com.abc.model.Customer;
+import com.abc.model.Order;
 import com.abc.service.CartService;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 
 @WebServlet("/cart")
 public class CartController extends HttpServlet {
@@ -88,9 +90,24 @@ public class CartController extends HttpServlet {
             return;
         }
 
+        // Proceed with the checkout process
         cartService.checkoutCart(cart, customer, address);
+
+        // Assuming the checkout process returns an Order object after saving it to the database
+        Order placedOrder = new Order();
+        placedOrder.setCustomerName(customer.getName());
+        placedOrder.setOrderTime(new Date().toString()); // Set the current time or order time
+        placedOrder.setOrderSummary(cart.getItems().toString()); // Simplified, customize as needed
+        placedOrder.setCustomerAddress(address);
+        placedOrder.setTotalPrice(cart.getTotal());
+
+        // Save the placed order in the session for later use in order confirmation
+        session.setAttribute("order", placedOrder);
+
+        // Clear the cart after checkout
         cart.clear();
 
+        // Redirect to the order confirmation page
         response.sendRedirect("orderConfirmation.jsp");
     }
 }

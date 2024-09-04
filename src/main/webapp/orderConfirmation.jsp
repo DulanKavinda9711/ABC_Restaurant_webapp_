@@ -77,15 +77,21 @@
     <!-- Confirmation Container -->
     <div class="container mt-5">
         <h1 class="text-center">Order Confirmation</h1>
-        <p class="text-center">Thank you for your order, ${sessionScope.customer.name}!</p>
+        <p class="text-center">Thank you for your order, <strong>${sessionScope.customer.name}!</strong></p>
         <p class="text-center">Your order has been successfully placed.</p>
         <div class="text-center mt-4">
-            <a href="index" class="btn btn-secondary w-100">Return to Home</a>
+            <a href="index" class="btn btn-secondary w-100 mb-3">Return to Home</a>
+            <!-- Button to Print the Bill -->
+            <button class="btn btn-primary w-100" onclick="window.location.href='order?action=generateBill'">Print Your Bill</button>
+
         </div>
     </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!-- JavaScript Function for Printing the Bill -->
+    
 </body>
 </html>

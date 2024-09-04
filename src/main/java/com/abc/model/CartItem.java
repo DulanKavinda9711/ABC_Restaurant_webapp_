@@ -28,4 +28,9 @@ public class CartItem {
     public double getTotalPrice() {
         return Double.parseDouble(product.getPrice()) * quantity;
     }
+    
+    @Override
+    public String toString() {
+        return product.getName() + " - Quantity: " + quantity + " - Total Price: Rs " + getTotalPrice();
+    }
 }

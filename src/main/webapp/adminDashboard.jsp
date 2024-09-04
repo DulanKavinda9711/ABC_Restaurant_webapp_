@@ -369,11 +369,26 @@
                     </div>
                 </div>
             </div>
+            <div class="accordion-item" style="background-color: #1f1f1f; border-color: #343a40; margin-bottom: 5px;">
+                <h2 class="accordion-header" id="headingOrders">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrders" aria-expanded="false" aria-controls="collapseOrders" style="background-color: #1f1f1f; color: #f8f9fa;">
+                        <i class="fas fa-box-open"></i> Order
+                    </button>
+                </h2>
+                <div id="collapseOrders" class="accordion-collapse collapse" aria-labelledby="headingOrders" data-bs-parent="#accordionSidebar">
+					    <div class="accordion-body" style="background-color: #1f1f1f; padding: 10px;">
+					        <a href="javascript:void(0);" onclick="loadContent('admin?action=listOrders');" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px; margin-bottom: 5px;">
+					            <i class="fas fa-box-open"></i> View Orders
+					        </a>
+					        <a href="admin?action=generateOrderReportPDF" class="dropdown-item" style="color: #f8f9fa; background-color: #343a40; border-radius: 4px;">
+					            <i class="fas fa-file-pdf"></i> Daily Sales Report
+					        </a>
+					    </div>
+					</div>
+            </div>
+            
             <a href="javascript:void(0);" onclick="loadContent('admin?action=listQueries');" style="color: #f8f9fa; background-color: #1f1f1f; padding: 10px 15px; display: block; margin-bottom: 5px;">
                 <i class="fas fa-question-circle"></i> View Queries
-            </a>
-            <a href="javascript:void(0);" onclick="loadContent('admin?action=listOrders');" style="color: #f8f9fa; background-color: #1f1f1f; padding: 10px 15px; display: block; margin-bottom: 5px;">
-                <i class="fas fa-box-open"></i> View Orders
             </a>
             <div class="accordion-item" style="background-color: #1f1f1f; border-color: #343a40; margin-bottom: 5px;">
                 <h2 class="accordion-header" id="headingGallery">
@@ -417,6 +432,11 @@
     <a href="adminLogin.jsp" style="color: #f8f9fa; background-color: #1f1f1f; padding: 10px 15px; display: block; margin-top: 5px;">
         <i class="fas fa-sign-out-alt"></i> Log Out
     </a>
+    
+    
+    
+    
+    
 </div>
     
 
@@ -652,6 +672,8 @@
             </div>
         </div>
     </div>
+    
+    
 
     <script>
         function loadContent(url) {

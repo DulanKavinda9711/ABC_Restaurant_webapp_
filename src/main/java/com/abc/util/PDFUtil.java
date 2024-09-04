@@ -10,17 +10,18 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.layout.element.Cell;
-
 import com.abc.model.Reservation;
+import com.abc.model.OrderReport;
 
-
+import java.util.List;
+import java.util.Map;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class PDFUtil {
 
+    // Existing method to generate a Reservation PDF
     public static ByteArrayOutputStream generateReservationPDF(List<Reservation> reservations) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();  // Use java.io.ByteArrayOutputStream
         try {
@@ -103,5 +104,52 @@ public class PDFUtil {
         }
 
         return table;
+    }
+
+    // New method to generate an Order Report PDF
+    public static ByteArrayOutputStream generateOrderReportPDF(Map<String, OrderReport> report) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        try {
+            PdfWriter writer = new PdfWriter(baos);
+            PdfDocument pdfDoc = new PdfDocument(writer);
+            Document document = new Document(pdfDoc);
+
+            // Add title
+            document.add(new Paragraph("Sales Report").setBold().setFontSize(18));
+
+            // Create table with columns: Date, Total Selling Products, Total Income
+            Table table = new Table(new float[]{2, 2, 2});
+            table.setWidth(UnitValue.createPercentValue(100));
+
+            // Add header row
+            table.addHeaderCell(new Cell().add(new Paragraph("Date"))
+                    .setBackgroundColor(new DeviceRgb(0, 128, 0)) // Green color for header
+                    .setFontColor(new DeviceRgb(255, 255, 255))); // White text for header
+
+            table.addHeaderCell(new Cell().add(new Paragraph("Total Selling Products"))
+                    .setBackgroundColor(new DeviceRgb(0, 128, 0))
+                    .setFontColor(new DeviceRgb(255, 255, 255)));
+
+            table.addHeaderCell(new Cell().add(new Paragraph("Total Income"))
+                    .setBackgroundColor(new DeviceRgb(0, 128, 0))
+                    .setFontColor(new DeviceRgb(255, 255, 255)));
+
+            // Populate the table with data
+            for (Map.Entry<String, OrderReport> entry : report.entrySet()) {
+                OrderReport orderReport = entry.getValue();
+                table.addCell(orderReport.getDate());
+                table.addCell(String.valueOf(orderReport.getTotalProducts()));
+                table.addCell(String.format("Rs %.2f", orderReport.getTotalIncome()));
+            }
+
+            document.add(table);
+            document.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return baos;
     }
 }

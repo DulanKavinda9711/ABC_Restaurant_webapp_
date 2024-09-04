@@ -2,8 +2,12 @@ package com.abc.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.abc.model.Order;
+import com.abc.model.OrderReport;
 
 public class OrderDAO {
 	public List<Order> getAllOrders() {
@@ -55,6 +59,30 @@ public class OrderDAO {
 
 	    return count;
 	}
+	
+	public Map<String, OrderReport> getOrderReport() throws SQLException {
+        String query = "SELECT DATE(order_time) AS order_date, COUNT(*) AS total_products, SUM(total_price) AS total_income " +
+                       "FROM Orders GROUP BY DATE(order_time)";
+        
+        Map<String, OrderReport> report = new LinkedHashMap<>();
+
+        try (Connection connection = DBConnectionFactory.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            
+            while (resultSet.next()) {
+                String date = resultSet.getString("order_date");
+                int totalProducts = resultSet.getInt("total_products");
+                double totalIncome = resultSet.getDouble("total_income");
+                
+                report.put(date, new OrderReport(date, totalProducts, totalIncome));
+            }
+        }
+
+        return report;
+    }
+	
+	
 
 
 

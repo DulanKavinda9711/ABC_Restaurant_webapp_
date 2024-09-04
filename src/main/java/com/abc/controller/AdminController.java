@@ -15,6 +15,7 @@ import com.abc.model.Customer;
 import com.abc.model.Gallery;
 import com.abc.model.Offer;
 import com.abc.model.Order;
+import com.abc.model.OrderReport;
 import com.abc.model.Staff;
 import com.abc.service.AdminService;
 import com.abc.service.OrderService;
@@ -32,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/admin")
 public class AdminController extends HttpServlet {
@@ -114,6 +116,9 @@ public class AdminController extends HttpServlet {
                 break;
             case "generateReservationsPDF":
                 generateReservationsPDF(request, response);
+                break;
+            case "generateOrderReportPDF":
+                generateOrderReportPDF(request, response);
                 break;
             case "getProductCount":
                 getProductCount(request, response);
@@ -218,6 +223,22 @@ public class AdminController extends HttpServlet {
         // Set the response content type and headers
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=reservations.pdf");
+        response.setContentLength(baos.size());
+
+        // Write the PDF content to the response output stream
+        baos.writeTo(response.getOutputStream());
+        response.getOutputStream().flush();
+    }
+    
+    private void generateOrderReportPDF(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        Map<String, OrderReport> report = orderDAO.getOrderReport();
+
+        // Generate the PDF
+        ByteArrayOutputStream baos = PDFUtil.generateOrderReportPDF(report);
+
+        // Set the response content type and headers
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=sales_report.pdf");
         response.setContentLength(baos.size());
 
         // Write the PDF content to the response output stream
