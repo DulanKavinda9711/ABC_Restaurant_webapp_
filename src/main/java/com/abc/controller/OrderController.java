@@ -93,32 +93,42 @@ public class OrderController extends HttpServlet {
         String customerAddress = (order.getCustomerAddress() != null) ? order.getCustomerAddress() : "Unknown Address";
         double totalPrice = order.getTotalPrice();
 
-        // Create a table with 2 columns for labels and values
-        PdfPTable table = new PdfPTable(2);
-        table.setWidthPercentage(100); // Full width of the page
-        table.setSpacingBefore(10f);
-        table.setSpacingAfter(10f);
-
         // Define fonts for styling
         Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
         Font normalFont = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL);
 
-        // Add table headers
-        PdfPCell header = new PdfPCell(new Paragraph("Order Summary", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD)));
-        header.setColspan(2); // Span both columns
-        header.setHorizontalAlignment(Element.ALIGN_CENTER);
-        header.setPadding(10);
-        table.addCell(header);
+        // Add order summary header (centered)
+        Paragraph orderSummaryHeader = new Paragraph("Order Summary", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
+        orderSummaryHeader.setAlignment(Element.ALIGN_LEFT);
+        orderSummaryHeader.setSpacingAfter(10f);
+        document.add(orderSummaryHeader);
 
-        // Add customer details row by row
-        addTableRow(table, "Customer Name", customerName, boldFont, normalFont);
-        addTableRow(table, "Order Time", orderTime, boldFont, normalFont);
-        addTableRow(table, "Order Summary", orderSummary, boldFont, normalFont);
-        addTableRow(table, "Customer Address", customerAddress, boldFont, normalFont);
-        addTableRow(table, "Total Price", "Rs " + totalPrice, boldFont, normalFont);
+        // Add customer details as plain text
+        document.add(new Paragraph("Customer Name: " + customerName, normalFont));
+        document.add(new Paragraph("Order Time: " + orderTime, normalFont));
+        document.add(new Paragraph("Customer Address: " + customerAddress, normalFont));
 
-        // Add the table to the document
-        document.add(table);
+        // Add some space before the next section
+        document.add(new Paragraph("\n")); // Adds a blank line for spacing
+
+        // Create a table for the order summary
+        PdfPTable orderSummaryTable = new PdfPTable(2);
+        orderSummaryTable.setWidthPercentage(100); // Full width of the page
+        orderSummaryTable.setSpacingBefore(10f);
+        orderSummaryTable.setSpacingAfter(10f);
+
+        // Add order summary and total price rows
+        addTableRow(orderSummaryTable, "Order Summary", orderSummary, boldFont, normalFont);
+        addTableRow(orderSummaryTable, "Total Price", "Rs " + totalPrice, boldFont, normalFont);
+
+        // Add the order summary table to the document
+        document.add(orderSummaryTable);
+
+        // Add a thank you note
+        Paragraph thankYouNote = new Paragraph("Thanks for your order!", new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD));
+        thankYouNote.setAlignment(Element.ALIGN_CENTER);
+        thankYouNote.setSpacingBefore(20f);
+        document.add(thankYouNote);
     }
 
     // Helper method to add a row to the table with labels and values
@@ -131,5 +141,7 @@ public class OrderController extends HttpServlet {
         valueCell.setPadding(5);
         table.addCell(valueCell);
     }
+
+
 
 }
