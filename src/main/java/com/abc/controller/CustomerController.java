@@ -1,6 +1,7 @@
 package com.abc.controller;
 
 import com.abc.service.CustomerService;
+import com.abc.util.EmailUtil;
 import com.abc.model.Customer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ public class CustomerController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private CustomerService customerService;
 
+    @Override
     public void init() throws ServletException {
         customerService = new CustomerService();
     }
@@ -70,14 +72,15 @@ public class CustomerController extends HttpServlet {
     private void listCustomers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("customers", customerService.getAllCustomers());
+            request.getRequestDispatcher("WEB-INF/view/listCustomers.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("errorPage.jsp");
         }
-        request.getRequestDispatcher("WEB-INF/view/listCustomers.jsp").forward(request, response);
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	int customerId = Integer.parseInt(request.getParameter("id"));
+        int customerId = Integer.parseInt(request.getParameter("id"));
         customerService.deleteCustomer(customerId);
         request.getSession().setAttribute("message", "Successfully removed Customer");
         response.sendRedirect("admin");
@@ -85,6 +88,10 @@ public class CustomerController extends HttpServlet {
 
     private void showRegisterForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("WEB-INF/view/registerCustomer.jsp").forward(request, response);
+    }
+
+    private void showLoginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("WEB-INF/view/loginCustomer.jsp").forward(request, response);
     }
 
     private void registerCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -100,11 +107,11 @@ public class CustomerController extends HttpServlet {
         customer.setPassword(password);
 
         customerService.registerCustomer(customer);
-        response.sendRedirect("customer?action=login");
-    }
 
-    private void showLoginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/view/loginCustomer.jsp").forward(request, response);
+        // Send welcome email after successful registration
+        EmailUtil.sendWelcomeEmail(email, name);
+
+        response.sendRedirect("customer?action=login");
     }
 
     private void loginCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

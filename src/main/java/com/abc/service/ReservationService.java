@@ -44,4 +44,8 @@ public class ReservationService {
     public int getReservationCount() throws SQLException {
         return reservationDAO.getReservationCount();
     }
+    
+    public Reservation getReservationById(int reservationId) throws SQLException {
+        return reservationDAO.getReservationById(reservationId);
+    }
 }

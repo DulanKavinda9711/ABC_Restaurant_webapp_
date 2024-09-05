@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.abc.model.Reservation;
 import com.abc.service.ReservationService;
+import com.abc.util.EmailUtil;
 
 @WebServlet("/reservation")
 public class ReservationController extends HttpServlet {
@@ -44,7 +45,6 @@ public class ReservationController extends HttpServlet {
     private void listReservations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("reservations", reservationService.getAllReservations());
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,21 +76,21 @@ public class ReservationController extends HttpServlet {
 
         try {
             reservationService.addReservation(reservation);
-            // Redirect to index with a success message
             response.sendRedirect("index?success=true&message=Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!");
         } catch (Exception e) {
-            // Redirect to index with an error message
             response.sendRedirect("index?error=true&message=There was an error submitting your reservation. Please try again later.");
         }
     }
 
-
-
-
     private void acceptReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int reservationId = Integer.parseInt(request.getParameter("id"));
         try {
+            Reservation reservation = reservationService.getReservationById(reservationId);
             reservationService.updateReservationStatus(reservationId, "Accepted");
+            
+            // Send email notification to customer
+            EmailUtil.sendReservationAcceptedEmail(reservation.getEmail(), reservation.getName(), reservation.getDate(), reservation.getTime());
+            
             request.getSession().setAttribute("message", "Accepted Reservation Successfully");
             response.sendRedirect("admin?action=dashboard");
         } catch (SQLException e) {
@@ -101,13 +101,17 @@ public class ReservationController extends HttpServlet {
     private void rejectReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int reservationId = Integer.parseInt(request.getParameter("id"));
         try {
+            Reservation reservation = reservationService.getReservationById(reservationId);
             reservationService.updateReservationStatus(reservationId, "Rejected");
+            
+            // Send email notification to customer
+            EmailUtil.sendReservationRejectedEmail(reservation.getEmail(), reservation.getName(), reservation.getDate(), reservation.getTime());
+            
             request.getSession().setAttribute("message", "Rejected Reservation Successfully");
             response.sendRedirect("admin?action=dashboard");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
     }
 
     private void deleteReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -119,6 +123,5 @@ public class ReservationController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
     }
 }

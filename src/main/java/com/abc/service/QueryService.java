@@ -40,4 +40,8 @@ public class QueryService {
     public int getQueryCount() throws SQLException {
         return queryDAO.getQueryCount();
     }
+    
+    public Query getQueryById(int queryId) {
+        return queryDAO.getQueryById(queryId);
+    }
 }

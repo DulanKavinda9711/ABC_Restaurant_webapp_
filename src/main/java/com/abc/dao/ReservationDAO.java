@@ -35,6 +35,33 @@ public class ReservationDAO {
             }
         }
     }
+    
+    public Reservation getReservationById(int reservationId) throws SQLException {
+        String query = "SELECT * FROM Reservation WHERE reservation_id = ?";
+        Reservation reservation = null;
+
+        try (Connection connection = DBConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, reservationId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    reservation = new Reservation(
+                            resultSet.getInt("reservation_id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("email"),
+                            resultSet.getString("phone"),
+                            resultSet.getString("date"),
+                            resultSet.getString("time"),
+                            resultSet.getInt("people"),
+                            resultSet.getString("message"),
+                            resultSet.getString("status")
+                    );
+                }
+            }
+        }
+        return reservation;
+    }
 
     public List<Reservation> getAllReservations() throws SQLException {
         List<Reservation> reservations = new ArrayList<>();

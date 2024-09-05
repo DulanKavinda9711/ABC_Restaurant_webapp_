@@ -65,5 +65,27 @@ public class QueryDAO {
         }
         return 0;
     }
+    
+    public Query getQueryById(int queryId) {
+        Query query = null;
+        String queryStatement = "SELECT * FROM Query WHERE query_id = ?";
+
+        try (Connection connection = DBConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(queryStatement)) {
+            statement.setInt(1, queryId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String subject = resultSet.getString("subject");
+                String message = resultSet.getString("message");
+                query = new Query(queryId, name, email, subject, message);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return query;
+    }
 
 }

@@ -44,6 +44,7 @@
                         <td>${query.subject}</td>
                         <td>${query.message}</td>
                         <td>
+                            <!-- Reply button sends the query ID to the controller -->
                             <a href="query?action=reply&id=${query.queryId}" class="btn btn-warning">Reply</a>
                             <a href="query?action=delete&id=${query.queryId}" class="btn btn-danger">Delete</a>
                         </td>
