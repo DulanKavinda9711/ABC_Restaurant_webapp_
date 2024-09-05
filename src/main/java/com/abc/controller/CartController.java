@@ -4,6 +4,7 @@ import com.abc.model.Cart;
 import com.abc.model.Customer;
 import com.abc.model.Order;
 import com.abc.service.CartService;
+import com.abc.util.EmailUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -93,7 +94,7 @@ public class CartController extends HttpServlet {
         // Proceed with the checkout process
         cartService.checkoutCart(cart, customer, address);
 
-        // Assuming the checkout process returns an Order object after saving it to the database
+        // Create an Order object to store order details
         Order placedOrder = new Order();
         placedOrder.setCustomerName(customer.getName());
         placedOrder.setOrderTime(new Date().toString()); // Set the current time or order time
@@ -104,10 +105,25 @@ public class CartController extends HttpServlet {
         // Save the placed order in the session for later use in order confirmation
         session.setAttribute("order", placedOrder);
 
+        // Send order confirmation email
+        sendOrderConfirmationEmail(customer, placedOrder);
+
         // Clear the cart after checkout
         cart.clear();
 
         // Redirect to the order confirmation page
         response.sendRedirect("orderConfirmation.jsp");
+    }
+
+    // Method to send order confirmation email
+    private void sendOrderConfirmationEmail(Customer customer, Order order) {
+        String recipientEmail = customer.getEmail();
+        String recipientName = customer.getName();
+        String orderSummary = order.getOrderSummary(); // This should contain product names and quantities
+        double totalPrice = order.getTotalPrice();
+        String deliveryAddress = order.getCustomerAddress();
+
+        // Send the order confirmation email
+        EmailUtil.sendOrderConfirmationEmail(recipientEmail, recipientName, orderSummary, totalPrice, deliveryAddress);
     }
 }

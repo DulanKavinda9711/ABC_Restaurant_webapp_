@@ -90,7 +90,7 @@ public class EmailUtil {
         }
     }
 
-    // Method to send welcome email (as already implemented)
+    // Method to send welcome email
     public static void sendWelcomeEmail(String recipientEmail, String recipientName) {
         try {
             Session session = getSession();
@@ -121,6 +121,7 @@ public class EmailUtil {
         }
     }
     
+    // Method to send reply email
     public static void sendReplyEmail(String recipientEmail, String recipientName, String subject, String originalMessage, String replyMessage) {
         try {
             Session session = getSession();
@@ -153,4 +154,42 @@ public class EmailUtil {
         }
     }
 
+    // Method to send order confirmation email
+    public static void sendOrderConfirmationEmail(String recipientEmail, String recipientName, String orderSummary, double totalPrice, String address) {
+        try {
+            Session session = getSession();
+
+            // Create a MimeMessage object
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(SENDER_EMAIL));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("Thank you for your order from ABC Restaurant!");
+
+            // Compose the email content
+            String emailContent = "<h1>Thank You for Your Order!</h1>"
+                    + "<p>Dear " + recipientName + ",</p>"
+                    + "<p>Thank you for placing an order with ABC Restaurant. We are thrilled to serve you!</p>"
+                    + "<h3>Order Summary:</h3>"
+                    + "<p><strong>Items:</strong></p>"
+                    + "<p>" + orderSummary + "</p>"
+                    + "<p><strong>Total Price:</strong> Rs " + totalPrice + "</p>"
+                    + "<p><strong>Delivery Address:</strong></p>"
+                    + "<p>" + address + "</p>"
+                    + "<br><p>If you have any questions about your order, feel free to reach out to us.</p>"
+                    + "<p>We appreciate your business and hope to see you again soon!</p>"
+                    + "<br><p>Best regards,</p>"
+                    + "<p>ABC Restaurant</p>";
+
+            // Set the email content as HTML
+            message.setContent(emailContent, "text/html");
+
+            // Send the email
+            Transport.send(message);
+
+            System.out.println("Order confirmation email sent to " + recipientEmail);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
 }
