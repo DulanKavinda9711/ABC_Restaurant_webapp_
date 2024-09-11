@@ -16,7 +16,7 @@ public class ProductDAO {
             connection = DBConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
-            statement.setString(2, product.getPrice()); // Change to setString
+            statement.setString(2, product.getPrice()); 
             statement.setString(3, product.getDescription());
             statement.setString(4, product.getImagePath());
             statement.setString(5, product.getCategory());
@@ -42,7 +42,7 @@ public class ProductDAO {
             connection = DBConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
-            statement.setString(2, product.getPrice()); // Change to setString
+            statement.setString(2, product.getPrice());
             statement.setString(3, product.getDescription());
             statement.setString(4, product.getImagePath());
             statement.setString(5, product.getCategory());
@@ -72,17 +72,17 @@ public class ProductDAO {
             int rowsAffected = statement.executeUpdate();
 
             if (rowsAffected == 0) {
-                // If no rows were affected, it means the product ID does not exist
+              
                 System.out.println("No product found with ID: " + productId);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Log the exception
+            e.printStackTrace(); 
         } finally {
             try {
                 if (statement != null) statement.close();
                 if (connection != null) connection.close();
             } catch (SQLException e) {
-                e.printStackTrace(); // Log the exception
+                e.printStackTrace(); 
             }
         }
     }
@@ -97,7 +97,7 @@ public class ProductDAO {
         while (resultSet.next()) {
             int id = resultSet.getInt("product_id");
             String name = resultSet.getString("name");
-            String price = resultSet.getString("price"); // Change to getString
+            String price = resultSet.getString("price"); 
             String desc = resultSet.getString("description");
             String imagePath = resultSet.getString("image_path");
             String category = resultSet.getString("category");

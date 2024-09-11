@@ -93,6 +93,30 @@
         .text-center.mt-4 {
             margin-top: 30px;
         }
+        .card-selection {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .card-option {
+            text-align: center;
+        }
+
+        .card-option img {
+            width: 80px;
+            height: 50px;
+        }
+
+        .card-option input[type="radio"] {
+            margin-top: 10px;
+        }
+
+        .selected-card {
+            border: 2px solid #28a745;
+            padding: 5px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -143,20 +167,75 @@
                 </tr>
             </table>
 
-            <!-- Customer Name and Address Form -->
+            
             <div class="mt-4">
-                <form action="cart" method="post" onsubmit="showLoadingSpinner()">
+                <form id="payment-form" action="cart" method="post" onsubmit="submitPayment(event)">
                     <input type="hidden" name="action" value="checkout">
+                    
+                    
                     <div class="mb-3">
                         <label for="customerName" class="form-label">Customer Name</label>
                         <input type="text" class="form-control" id="customerName" name="customerName" value="${sessionScope.customer.name}" required>
                     </div>
+
+                    
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
                     </div>
 
-                    <!-- Checkout Button with loading spinner -->
+                   
+                    <div class="card-selection">
+                        <div class="card-option">
+                            <label for="visa" class="selected-card">
+                                <img src="assets/img/visa.png" alt="Visa">
+                                <br>
+                                <input type="radio" id="visa" name="cardType" value="Visa" required>
+                            </label>
+                        </div>
+
+                        <div class="card-option">
+                            <label for="mastercard" class="selected-card">
+                                <img src="assets/img/mastercard.png" alt="MasterCard">
+                                <br>
+                                <input type="radio" id="mastercard" name="cardType" value="MasterCard" required>
+                            </label>
+                        </div>
+
+                        <div class="card-option">
+                            <label for="jcb" class="selected-card">
+                                <img src="assets/img/jcb.png" alt="JCB">
+                                <br>
+                                <input type="radio" id="jcb" name="cardType" value="JCB" required>
+                            </label>
+                        </div>
+                    </div>
+
+                    
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" maxlength="16" required>
+                    </div>
+                    
+                   
+                    <div class="mb-3 row">
+                        <div class="col">
+                            <label for="expiryMonth" class="form-label">Expiry Month</label>
+                            <input type="text" class="form-control" id="expiryMonth" name="expiryMonth" maxlength="2" required>
+                        </div>
+                        <div class="col">
+                            <label for="expiryYear" class="form-label">Expiry Year</label>
+                            <input type="text" class="form-control" id="expiryYear" name="expiryYear" maxlength="4" required>
+                        </div>
+                    </div>
+
+                   
+                    <div class="mb-3">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="text" class="form-control" id="cvv" name="cvv" maxlength="3" required>
+                    </div>
+
+                    
                     <button type="submit" class="btn btn-checkout mt-4 w-100">Proceed to Checkout</button>
                 </form>
             </div>
@@ -172,23 +251,60 @@
         </div>
     </div>
 
-    <!-- Loading Spinner -->
+    
     <div id="loading-spinner" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10000;">
         <div class="spinner-border text-light" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 
-    <!-- Scripts -->
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script>
-        function showLoadingSpinner() {
-            document.getElementById('loading-spinner').style.display = 'block';
-            setTimeout(function() {
-                document.querySelector('form').submit();
-            }, 20000); // 20 seconds delay
+   
+    function submitPayment(event) {
+        event.preventDefault();
+
+        const cardNumber = document.getElementById('cardNumber').value;
+        const expiryMonth = document.getElementById('expiryMonth').value;
+        const expiryYear = document.getElementById('expiryYear').value;
+        const cvv = document.getElementById('cvv').value;
+        const customerName = document.getElementById('customerName').value; // Get the customer name
+
+        // Validate card number
+        if (!/^\d{16}$/.test(cardNumber)) {
+            alert('Please enter a valid 16-digit card number.');
+            return;
         }
-    </script>
+
+        // Validate expiry month
+        if (!/^\d{2}$/.test(expiryMonth) || expiryMonth < 1 || expiryMonth > 12) {
+            alert('Please enter a valid expiry month (01-12).');
+            return;
+        }
+
+        // Validate expiry year
+        const currentYear = new Date().getFullYear();
+        if (!/^\d{4}$/.test(expiryYear) || parseInt(expiryYear) < currentYear) {
+            alert('Please enter a valid expiry year.');
+            return;
+        }
+
+        // Validate CVV
+        if (!/^\d{3}$/.test(cvv)) {
+            alert('Please enter a valid 3-digit CVV.');
+            return;
+        }
+
+        // If all validations pass, display the success message with the customer's name
+        alert(`Payment successfully made for ${sessionScope.customer.name}!`);
+        
+        document.getElementById('payment-form').submit();
+    }
+
+
+</script>
+
 </body>
 </html>

@@ -74,7 +74,7 @@ public class ProductController extends HttpServlet {
     private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        String price = request.getParameter("price"); // Now a String
+        String price = request.getParameter("price"); 
         String category = request.getParameter("category");
 
         Part filePart = request.getPart("image");
@@ -102,7 +102,7 @@ public class ProductController extends HttpServlet {
         int productId = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        String price = request.getParameter("price"); // Now a String
+        String price = request.getParameter("price"); 
         String category = request.getParameter("category");
 
         Part filePart = request.getPart("image");

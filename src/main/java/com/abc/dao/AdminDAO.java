@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 
 public class AdminDAO {
 
-    // Method to find admin by username and password
+    
     public Admin findAdminByUsernameAndPassword(String username, String password) {
         Admin admin = null;
 
@@ -23,7 +23,7 @@ public class AdminDAO {
                 admin = new Admin();
                 admin.setId(resultSet.getInt("id"));
                 admin.setUsername(resultSet.getString("username"));
-                // Note: You shouldn't return the password for security reasons
+               
             }
 
         } catch (Exception e) {

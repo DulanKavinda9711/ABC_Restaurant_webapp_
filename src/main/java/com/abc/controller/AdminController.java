@@ -217,15 +217,15 @@ public class AdminController extends HttpServlet {
     private void generateReservationsPDF(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         List<Reservation> reservations = reservationDAO.getAllReservations();
         
-        // Generate the PDF
+        
         ByteArrayOutputStream baos = PDFUtil.generateReservationPDF(reservations);
 
-        // Set the response content type and headers
+        
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=reservations.pdf");
         response.setContentLength(baos.size());
 
-        // Write the PDF content to the response output stream
+        
         baos.writeTo(response.getOutputStream());
         response.getOutputStream().flush();
     }
@@ -233,15 +233,15 @@ public class AdminController extends HttpServlet {
     private void generateOrderReportPDF(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         Map<String, OrderReport> report = orderDAO.getOrderReport();
 
-        // Generate the PDF
+    
         ByteArrayOutputStream baos = PDFUtil.generateOrderReportPDF(report);
 
-        // Set the response content type and headers
+       
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=sales_report.pdf");
         response.setContentLength(baos.size());
 
-        // Write the PDF content to the response output stream
+       
         baos.writeTo(response.getOutputStream());
         response.getOutputStream().flush();
     }
@@ -356,10 +356,10 @@ public class AdminController extends HttpServlet {
         Admin admin = adminService.loginAdmin(username, password);
 
         if (admin != null) {
-            // Store the admin object in the session
+            
             request.getSession().setAttribute("admin", admin);
-            // Store the role in the session explicitly if necessary
-            request.getSession().setAttribute("role", "admin"); // Assuming the role is "admin"
+            
+            request.getSession().setAttribute("role", "admin");
             response.sendRedirect("adminDashboard.jsp");
         } else {
             request.setAttribute("error", "Invalid username or password");

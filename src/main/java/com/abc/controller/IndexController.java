@@ -20,26 +20,26 @@ public class IndexController extends HttpServlet {
     private ProductService productService;
     private ServiceService serviceService;
     private OfferService offerService;
-    private GalleryService galleryService; // Added GalleryService
+    private GalleryService galleryService; 
 
     public void init() throws ServletException {
         productService = ProductService.getInstance();
         serviceService = ServiceService.getInstance();
         offerService = OfferService.getInstance();
-        galleryService = GalleryService.getInstance(); // Initialize GalleryService
+        galleryService = GalleryService.getInstance(); 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Set products, services, offers, and gallery images as attributes
+            
             request.setAttribute("products", productService.getAllProducts());
             request.setAttribute("services", serviceService.getAllServices());
             request.setAttribute("offers", offerService.getAllOffers());
-            request.setAttribute("galleries", galleryService.getAllGalleries()); // Add gallery images to request
+            request.setAttribute("galleries", galleryService.getAllGalleries()); 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // Forward the request to the index.jsp page
+        
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

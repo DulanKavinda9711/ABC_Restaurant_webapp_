@@ -6,18 +6,20 @@ public class Query {
     private String email;
     private String subject;
     private String message;
+    private String state; 
 
     public Query() {}
 
-    public Query(int queryId, String name, String email, String subject, String message) {
+    public Query(int queryId, String name, String email, String subject, String message, String state) {
         this.queryId = queryId;
         this.name = name;
         this.email = email;
         this.subject = subject;
         this.message = message;
+        this.state = state;
     }
 
-    // Getters and Setters for all fields
+    
     public int getQueryId() {
         return queryId;
     }
@@ -56,5 +58,13 @@ public class Query {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

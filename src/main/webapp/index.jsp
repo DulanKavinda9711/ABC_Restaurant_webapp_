@@ -10,10 +10,10 @@
 
   <title>ABC Restaurant - Index</title>
 
-  <!-- Google Fonts -->
+  
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
+  
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,9 +22,6 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
    
-  
-
-  <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   
 </head>
@@ -92,7 +89,7 @@
                 </c:otherwise>
             </c:choose>
 
-            <!-- Cart Icon with Number of Items -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="cart.jsp">
                     <i class="bi bi-cart"></i> <!-- Bootstrap cart icon -->
@@ -108,13 +105,13 @@
             </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav><!-- .navbar -->
+    </nav>
 
     <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a Table</a>
 </div>
   </header>
   
-  <!-- Success Message -->
+  
 <c:if test="${param.success == 'true'}">
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <c:out value="${param.message}" />
@@ -124,7 +121,7 @@
     </div>
 </c:if>
 
-<!-- Error Message -->
+
 <c:if test="${param.error == 'true'}">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <c:out value="${param.message}" />
@@ -184,7 +181,7 @@
         </div>
 
       </div>
-    </section><!-- End About Section -->
+    </section>
 
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us">
@@ -283,8 +280,6 @@
   </div>
 </section>
 
-<!-- End Menu Section -->
-
     <!-- ======= Specials Section ======= -->
  <section id="specials" class="specials">
   <div class="container" data-aos="fade-up">
@@ -371,8 +366,7 @@
       <p>Book a Table</p>
     </div>
       
-      
-    <!-- Form to Book a Table -->
+     
     <form action="reservation?action=add" method="post" role="form" data-aos="fade-up" data-aos-delay="100">
       <div class="row">
         <div class="col-lg-4 col-md-6 form-group">
@@ -410,7 +404,6 @@
   </div>
 </section>
     
-    <!-- End Book A Table Section -->
 
     
     <!-- ======= Gallery Section ======= -->
@@ -477,7 +470,7 @@
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>abcrestaurantsl@gmail.com</p>
+                <p>abcrestaurantsl@outlook.com</p>
               </div>
 
               <div class="phone">
@@ -510,7 +503,6 @@
               <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
@@ -558,7 +550,7 @@
                             <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                         </div>
                         <p>
-                            <a href="mailto:abcrestaurantsl@gmail.com">abcrestaurantsl@gmail.com</a>
+                            <a href="mailto:abcrestaurantsl@outlook.com">abcrestaurantsl@outlook.com</a>
                         </p>
                     </div>
                 </div>
@@ -579,7 +571,7 @@
   
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
+ 
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -588,13 +580,13 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 </body>
 
-<!-- Template Main JS File -->
+
 
   <script src="assets/js/main.js"></script>
   <script>
   function alertLoginMessage() {
     alert("Please log in before adding items to the cart.");
-    window.location.href = 'customer?action=login'; // Redirect to the login page
+    window.location.href = 'customer?action=login'; 
   }
   
 
@@ -617,17 +609,19 @@
 </script>
 
 <script>
-    // Auto-dismiss after 5 seconds (5000ms)
+    
     setTimeout(function() {
         var alert = document.querySelector('.alert');
         if (alert) {
             alert.classList.add('fade-out');
             setTimeout(function() {
                 alert.remove();
-            }, 1000); // Wait for the fade-out transition to complete before removing
+            }, 1000); 
         }
     }, 5000);
 </script>
+
+
 
 
 </html>

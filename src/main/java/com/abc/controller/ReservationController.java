@@ -88,7 +88,6 @@ public class ReservationController extends HttpServlet {
             Reservation reservation = reservationService.getReservationById(reservationId);
             reservationService.updateReservationStatus(reservationId, "Accepted");
             
-            // Send email notification to customer
             EmailUtil.sendReservationAcceptedEmail(reservation.getEmail(), reservation.getName(), reservation.getDate(), reservation.getTime());
             
             request.getSession().setAttribute("message", "Accepted Reservation Successfully");
@@ -104,7 +103,6 @@ public class ReservationController extends HttpServlet {
             Reservation reservation = reservationService.getReservationById(reservationId);
             reservationService.updateReservationStatus(reservationId, "Rejected");
             
-            // Send email notification to customer
             EmailUtil.sendReservationRejectedEmail(reservation.getEmail(), reservation.getName(), reservation.getDate(), reservation.getTime());
             
             request.getSession().setAttribute("message", "Rejected Reservation Successfully");

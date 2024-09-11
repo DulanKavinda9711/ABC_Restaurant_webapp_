@@ -5,7 +5,7 @@ public class Product {
     private int productId;
     private String name;
     private String description;
-    private String price; // Change from double to String
+    private String price; 
     private String imagePath;
     private String category;
 
@@ -20,7 +20,7 @@ public class Product {
         this.category = category;
     }
 
-    // Getters and Setters for all fields including price as String
+
     public int getProductId() {
         return productId;
     }

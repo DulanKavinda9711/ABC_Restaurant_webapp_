@@ -44,4 +44,8 @@ public class QueryService {
     public Query getQueryById(int queryId) {
         return queryDAO.getQueryById(queryId);
     }
+    
+    public void updateQuery(Query query) {
+        queryDAO.updateQuery(query);
+    }
 }

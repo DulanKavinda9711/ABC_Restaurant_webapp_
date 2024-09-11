@@ -87,7 +87,7 @@ public class StaffController extends HttpServlet {
     }
 
     private void showLoginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("loginStaff.jsp"); // Redirect to the publicly accessible JSP
+        response.sendRedirect("loginStaff.jsp"); 
     }
 
     private void loginStaff(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -97,8 +97,8 @@ public class StaffController extends HttpServlet {
         Staff staff = staffService.loginStaff(email, password);
         if (staff != null) {
             request.getSession().setAttribute("staff", staff);
-            request.getSession().setAttribute("role", "staff"); // Set the role as "staff" in the session
-            response.sendRedirect("adminDashboard.jsp"); // Redirect to the dashboard after successful login
+            request.getSession().setAttribute("role", "staff"); 
+            response.sendRedirect("adminDashboard.jsp"); 
         } else {
             request.setAttribute("error", "Invalid email or password");
             request.getRequestDispatcher("loginStaff.jsp").forward(request, response);

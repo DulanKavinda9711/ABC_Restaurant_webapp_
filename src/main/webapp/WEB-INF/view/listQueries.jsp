@@ -32,6 +32,7 @@
                     <th>Email</th>
                     <th>Subject</th>
                     <th>Message</th>
+                    <th>State</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -43,6 +44,7 @@
                         <td>${query.email}</td>
                         <td>${query.subject}</td>
                         <td>${query.message}</td>
+                        <td>${query.state}</td>
                         <td>
                             <!-- Reply button sends the query ID to the controller -->
                             <a href="query?action=reply&id=${query.queryId}" class="btn btn-warning">Reply</a>
@@ -61,10 +63,10 @@
             rows.sort((rowA, rowB) => {
                 let idA = parseInt(rowA.cells[0].textContent);
                 let idB = parseInt(rowB.cells[0].textContent);
-                return idB - idA; // Sorting by ID in descending order (newest first)
+                return idB - idA; 
             });
 
-            rows.forEach(row => tableBody.appendChild(row)); // Reorder the rows in the table
+            rows.forEach(row => tableBody.appendChild(row)); 
         });
     </script>
 </body>
