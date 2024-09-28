@@ -26,7 +26,6 @@ public class ProductService {
     }
 
     public void addProduct(Product product) {
-        // Ensure price is stored as a string
         if (product.getPrice() != null && !product.getPrice().isEmpty()) {
             productDAO.addProduct(product);
         } else {
@@ -37,9 +36,8 @@ public class ProductService {
     public List<Product> getAllProducts() throws SQLException {
         return productDAO.getAllProducts();
     }
-    
+
     public void updateProduct(Product product) {
-        // Ensure price is stored as a string
         if (product.getPrice() != null && !product.getPrice().isEmpty()) {
             productDAO.updateProduct(product);
         } else {
@@ -49,9 +47,5 @@ public class ProductService {
 
     public void deleteProduct(int productId) {
         productDAO.deleteProduct(productId);
-    }
-    
-    public int getProductCount() throws SQLException {
-        return productDAO.getProductCount();
     }
 }
